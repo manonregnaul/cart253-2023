@@ -1,2 +1,2 @@
 # cart253-2023
-This is Lee Wilkins coursework repository for Creative Computation I
+This is my coursework repository for Creative Computation I
