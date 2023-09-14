@@ -22,29 +22,22 @@ function preload() {
 function setup() {
     createCanvas(500, 500);
 
+    //Set the background to orange
     background(255, 138, 1);
 
-    point(250,250);
+    //Draw a flesh-colored head
+    fill(250,200,200);
+    ellipse(250,250,200,200);
 
-    rect(0,0,250,250); 
+    //Draw the eyes black
+    fill(0,0,255);
+    ellipse(200,250,30,30);
+    ellipse(300,250,30,30);
 
-    line(0,0,500,500);
+    //Draw the mouth 
+    strokeWeight(10);
+    line(200,300,300,300);
 
-    line(500,0,0,500);
-
-    ellipse(250,250, 100, 100);
-
-    stroke(255,255,0);
-
-    fill(127,0,200);
-
-    rectMode(CENTER);
-
-    rect(250,250,100,100);
-
-    noStroke();
-    fill(191,255,199,100);
-    rect(250,250,80,80);
 
 
 }
