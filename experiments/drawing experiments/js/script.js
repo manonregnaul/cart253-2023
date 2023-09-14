@@ -17,8 +17,17 @@ function preload() {
 
 
 /**
- * Description of setup
+Drawing Experiments
+Manon Regnault
+
+Experimenting with p5's drawing and color functions. 
+
+Currently draw face
+
 */
+// setup()
+//
+// Draws a face on the canvas.
 function setup() {
     createCanvas(500, 500);
 
@@ -44,8 +53,11 @@ function setup() {
 
 
 /**
- * Description of draw()
+ //draw()
+ //
+ //Does nothing 
 */
+
 function draw() {
 
 }
