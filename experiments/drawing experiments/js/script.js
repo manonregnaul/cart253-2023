@@ -34,9 +34,16 @@ function setup() {
 
     ellipse(250,250, 100, 100);
 
+    stroke(255,255,0);
+
+    fill(127,0,200);
+
     rectMode(CENTER);
 
     rect(250,250,100,100);
+
+    noStroke();
+    fill(191,255,199,100);
     rect(250,250,80,80);
 
 
