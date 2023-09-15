@@ -16,11 +16,14 @@ function preload() {
 }
 
 let backgroundShade = 0;
-let circleX = 500;
-let circleY = 250;
-let circleSize = 200;
-let circleSpeed = 2;
-let circleAcceleration = 0.25;
+
+let circle = {
+    x: 250,
+    y: 250,
+    size: 200,
+    speed: 1,
+    fill: 0
+};
 
 /**
  * Create a canvas with the size of the window
@@ -36,8 +39,11 @@ function setup() {
 function draw() {
     backgroundShade += 0.2;
     background(backgroundShade);
-    circleX += circleSpeed;
-    circleSpeed += circleAcceleration;
-    ellipse(circleX, circleY, circleSize);
+
+    circle.x += circle.speed;
+
+    circle.fill = random(mouseX, mouseY);
+    fill(circle.fill);
+    ellipse(circle.x, circle.y, circle.size);
 
 }
