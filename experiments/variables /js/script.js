@@ -28,8 +28,10 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    background(255, 0, 0);
+    background(mouseX, 0, mouseY, 10);
     rectMode(CENTER);
+    noStroke();
+    fill(255 , 0 , 0 , 88);
     rect(mouseX, mouseY, 100, 100);
 
 }
