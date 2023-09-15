@@ -1,9 +1,9 @@
 /**
- * Title of Project
- * Author Name
+ * Variables experimentation
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * Manon Regnault
+ * 
+ * Variable experimentation: learning creating variables
  */
 
 "use strict";
@@ -15,9 +15,15 @@ function preload() {
 
 }
 
+let backgroundShade = 0;
+let circleX = 500;
+let circleY = 250;
+let circleSize = 200;
+let circleSpeed = 2;
+let circleAcceleration = 0.25;
 
 /**
- * Description of setup
+ * Create a canvas with the size of the window
 */
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -25,13 +31,13 @@ function setup() {
 
 
 /**
- * Description of draw()
+ * Changing color bckg and transparent mouse related circle
 */
 function draw() {
-    background(mouseX, 0, mouseY, 10);
-    rectMode(CENTER);
-    noStroke();
-    fill(255 , 0 , 0 , 88);
-    rect(mouseX, mouseY, 100, 100);
+    backgroundShade += 0.2;
+    background(backgroundShade);
+    circleX += circleSpeed;
+    circleSpeed += circleAcceleration;
+    ellipse(circleX, circleY, circleSize);
 
 }
