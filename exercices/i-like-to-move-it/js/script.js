@@ -7,22 +7,7 @@
 
 "use strict";
 
-    
-/**
- * Description of preload
-*/
-function preload() {
-    
-
-}
-
-
-/**
- * Description of setup
-*/
-
- // Declare the variables 
- let backgroundShade = 90;
+     // Declare the variables 
 
  let circle = {
     x: 0,
@@ -30,9 +15,16 @@ function preload() {
     size: 100, 
     speed: 1,
  };
+/**
+ * Description of preload
+*/
+function preload() {
+}
 
 
-
+/**
+ * Description of setup
+*/
 
 function setup() {
     createCanvas(500, 500);
