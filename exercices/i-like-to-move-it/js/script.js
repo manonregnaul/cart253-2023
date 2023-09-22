@@ -7,7 +7,7 @@
 
 "use strict";
 
-     // Declare the variables 
+     // Declare the scene variables (background mostly)
 
 let bg = {
     r: 7,
@@ -34,6 +34,7 @@ let floor = {
     fillColor: 0
 };
 
+//Declare circles variables and objects
 
 let circle1 = {
     x: 120 , 
@@ -116,7 +117,8 @@ function setup() {
 
 
 /**
- * Description of draw()
+ * This drawing represents 5 balls that falls in the canvas. The balls change size with the mouvement of
+ * the mouse but it never more than the size of the Canvas. The ball fall no lower than the canvas.
 */
 function draw() {
     
