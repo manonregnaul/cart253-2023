@@ -1,32 +1,47 @@
 /**
- * Title of Project
- * Author Name
+ * Conditional's experiment
+ * Manon Regnault
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * This is the following of Pippin's videos about conditionals
  */
 
 "use strict";
 
-/**
- * Description of preload
-*/
+let backgroundShade = 0
+let circle = {
+    x: 0, 
+    y: 250,
+    size: 100,
+    speed: 1
+}
+
+
 function preload() {
 
 }
 
 
 /**
- * Description of setup
+ * Created a canvas
 */
 function setup() {
-
+    createCanvas(500, 500);
 }
 
 
 /**
- * Description of draw()
+ * Drawing a black bg and a moving circle
 */
 function draw() {
+    background(backgroundShade);
+
+    circle.x = circle.x + circle.speed;
+
+    if (circle.x > width) {
+        circle.speed = -circle.speed;
+    }
+
+    ellipse(circle.x, circle.y, circle.size);
+    
 
 }
