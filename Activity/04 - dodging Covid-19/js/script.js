@@ -80,7 +80,7 @@ function draw() {
 
     if (covid19 > width) {
         covid19.x = 0;
-        covid19.y = random(0, height)
+        covid19.y = random(0, height);
     }
 
     // User movement 
