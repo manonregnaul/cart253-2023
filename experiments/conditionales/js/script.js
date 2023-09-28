@@ -7,14 +7,15 @@
 
 "use strict";
 
-let backgroundShade = 0
-let circle = {
-    x: 0, 
-    y: 250,
-    size: 100,
-    speed: 1
-}
+//let backgroundShade = 0
+//let circle = {
+   // x: 0, 
+    //y: 250,
+    //size: 100,
+    //speed: 1
+//}
 
+let displayCircle = false;
 
 function preload() {
 
@@ -33,24 +34,18 @@ function setup() {
  * Drawing a black bg and a moving circle
 */
 function draw() {
-    background(backgroundShade);
 
-    circle.x = circle.x + circle.speed;
+    background(0);
 
-    if (mouseX < width/3) {
-        fill(255, 0, 0);
+    if (mouseIsPressed) {
+        displayCircle = true;
     }
-    else if (mouseX < 2 * width/3) {
-        fill(0, 255, 0);
+    
+    if (displayCircle) {
+        ellipse (250, 250, 100, 100);
     }
-    else {
-        fill(0, 0, 255);
-    }
-        
     }
      
 
-    ellipse(circle.x, circle.y, circle.size);
+  
     
-
-}
