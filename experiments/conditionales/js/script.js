@@ -8,11 +8,10 @@
 "use strict";
 
 
-let angle = 0;
-let rectScale = 0
+let clownImage;
 
 function preload() {
-
+    clownImage = loadImage("assets/images/clown.png")
 }
 
 
@@ -31,19 +30,11 @@ function setup() {
  * Drawing a black bg and a moving circle
 */
 function draw() {
-    background (127);
+    background(0);
 
-    push();
-    fill(255, 0, 0); 
-    rectMode(CENTER);
-    translate(width/2, height/2);
-    rotate(angle);
-    scale(rectScale);
-    rect(0 ,0 , 100, 100);
-    pop()
-
-    angle = angle + 0.01; 
-    rectScale = rectScale + 0.01
+    imageMode(CENTER);
+    image(clownImage, mouseX, mouseY, 50, 50);
+    
 
 }
 
