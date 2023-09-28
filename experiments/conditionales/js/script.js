@@ -13,7 +13,6 @@ let caterpillar = {
     segmentSize: 50
 }
 
-let displayCircle = false;
 
 function preload() {
 
@@ -33,15 +32,19 @@ function setup() {
 */
 function draw() {
     background(0);
-    noStorke();
+    noStroke();
     fill(100, 200, 100); 
-  
-    ellipse(caterpillar.x, caterpillar.y, caterpillar.segmentSize);
-    ellipse(caterpillar.x + 40, caterpillar.y, caterpillar.segmentSize);
-    ellipse(caterpillar.x + 80, caterpillar.y, caterpillar.segmentSize);
-    ellipse(caterpillar.x + 120, caterpillar.y, caterpillar.segmentSize);
-    ellipse(caterpillar.x + 160, caterpillar.y, caterpillar.segmentSize);
+
+    let x = caterpillar.x;
+    let numSegments = 5;
+    let segmentsDrawn = 0;  
+
+    while (segmentsDrawn < numSegments) {
+        ellipse(x, caterpillar.y, caterpillar.segmentSize);
+        x = x + 40;
+        segmentsDrawn = segmentsDrawn + 1; 
     }
+}
      
 
   
