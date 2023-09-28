@@ -7,13 +7,11 @@
 
 "use strict";
 
-//let backgroundShade = 0
-//let circle = {
-   // x: 0, 
-    //y: 250,
-    //size: 100,
-    //speed: 1
-//}
+let caterpillar = {
+    x: 100, 
+    y: 250, 
+    segmentSize: 50
+}
 
 let displayCircle = false;
 
@@ -34,16 +32,15 @@ function setup() {
  * Drawing a black bg and a moving circle
 */
 function draw() {
-
     background(0);
-
-    if (mouseIsPressed) {
-        displayCircle = true;
-    }
-    
-    if (displayCircle) {
-        ellipse (250, 250, 100, 100);
-    }
+    noStorke();
+    fill(100, 200, 100); 
+  
+    ellipse(caterpillar.x, caterpillar.y, caterpillar.segmentSize);
+    ellipse(caterpillar.x + 40, caterpillar.y, caterpillar.segmentSize);
+    ellipse(caterpillar.x + 80, caterpillar.y, caterpillar.segmentSize);
+    ellipse(caterpillar.x + 120, caterpillar.y, caterpillar.segmentSize);
+    ellipse(caterpillar.x + 160, caterpillar.y, caterpillar.segmentSize);
     }
      
 
