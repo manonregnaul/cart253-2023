@@ -33,6 +33,13 @@ function setup() {
     circle.x = random (0, width);
     circle.y = random (0, height);
 
+    let d = dist(circle.x, circle.y, dangerZone.x, dangerZone.y);
+    while (d < circle.size/2 + dangerZone.size/2) {
+        circle.x = random (0, width);
+        circle.y = random (0, height);
+        d = dist(circle.x, circle.y, dangerZone.x, dangerZone.y);
+    }
+
 }
 
 
