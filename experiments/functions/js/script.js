@@ -20,20 +20,20 @@ function setup() {
 function draw() {
     background(0);
 
-    parrallels(100, 100);
-    parrallels(50, 50);
+    parrallels(100, 100, 5);
+    parrallels(50, 50, 10);
+    parallels(200, 200, 15);
+    parallels(312, 257, 20);
 
 
 }
 
-function parrallels(x, y) {
-    let x = 50;
-    let y = 250; 
-    for (let i = 0; i < 200; i++){
+function parrallels(x, y, numLines) {
+    for (let i = 0; i < numLines; i++){
         noStroke();
         fill(255);
         rectMode(CENTER);
-        rect(x, y, 2, 500);
+        rect(x, y, 2, 150);
         x = x + 10;
     }
 }
