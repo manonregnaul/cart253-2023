@@ -20,6 +20,13 @@ function setup() {
 function draw() {
     background(0);
 
+    parrallels(100, 100);
+    parrallels(50, 50);
+
+
+}
+
+function parrallels(x, y) {
     let x = 50;
     let y = 250; 
     for (let i = 0; i < 200; i++){
