@@ -11,11 +11,6 @@
 function setup() {
     createCanvas(500, 500);
 
-    let hotCelsisus = toCelsius(100);
-    console.log('100 degrees Fahrenheit is ${hotCelsius} degrees Celsius.');
-
-    let coldCelsius = toCelsius(10);
-    console.log('10 degrees Fahrenheit is ${coldCelsius} degrees Celsius');
 
 }
 
@@ -23,10 +18,9 @@ function setup() {
 
 function draw() {
     background(0);
+    rect(250, 250, 10, 10);
+    text('Hello, world!', 250, 250);
+
 
 }
 
-function toCelsius(fahrenheit) {
-    let celsius = (fahrenheit - 32) * 5/9;
-    return celsius;
-}
