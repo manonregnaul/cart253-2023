@@ -18,7 +18,15 @@ function setup() {
 
 function draw() {
     background(0);
-    rect(250, 250, 10, 10);
+
+
+    textAlign(CENTER, CENTER);
+    textSize(64);
+
+
+    fill(200, 50, 200);
+
+
     text('Hello, world!', 250, 250);
 
 
