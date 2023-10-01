@@ -6,17 +6,20 @@
 
 "use strict";
 
-let hello = {
-    string: 'Hello, world!', 
-    x: 250, 
-    y: 250, 
-    vx: 5, 
-    vy: 1, 
-    size: 64
-}
+let circle = {
+    x: 0,
+    y: 250,
+    size: 100,
+    vx: 0,
+    vy: 0,
+    speed: 2
+};
 
 function setup() {
     createCanvas(500, 500);
+    circle.vx = circle.speed;
+    textSize(32);
+    textAlign(CENTER, CENTER);
 
 
 }
@@ -26,25 +29,22 @@ function setup() {
 function draw() {
     background(0);
 
-    hello.x = hello.x + hello.vx;
-    hello.y = hello.y + hello.vy;
+    //Title
+    fill(255);
+    text('Life', width/2, height/2);
 
 
-    hello.size += 1;
+    // Animation
+    circle.x = circle.x + circle.vx;
+    circle.y = circle.y + circle.vy;
 
 
-    textAlign(CENTER, CENTER);
-    textSize(64);
-    textStyle(BOLD);
+    ellipse(circle.x, circle.y, circle.size);
 
 
-    fill(200, 50, 200);
-    stroke(50, 200, 50);
-    strokeWeight(3);
-
-
-    text('Hello, world!', 250, 250);
-
+    //Ending
+    fill(127);
+    text('It all over', width/2, height/2);
 
 }
 
