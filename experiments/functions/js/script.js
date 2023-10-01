@@ -43,7 +43,9 @@ function draw() {
         circle.x = circle.x + circle.vx;
         circle.y = circle.y + circle.vy;
     
-    
+        if(circle.x > width) {
+            state = 'ending';
+        }
         ellipse(circle.x, circle.y, circle.size);
     }
     else if (state === 'ending') {
