@@ -26,8 +26,13 @@ function setup() {
 function draw() {
     background(0);
 
-    circle.vx = random(-circle.speed, circle.speed);
-    circle.vy = random(-circle.speed, circle.speed);
+    let change = random();
+    if (change < 0.01) {
+        circle.vx = random(-circle.speed, circle.speed);
+        circle.vy = random(-circle.speed, circle.speed);
+    }
+     
+  
 
     circle.x = circle.x + circle.vx;
     circle.y = circle.y + circle.vy;
