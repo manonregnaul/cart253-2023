@@ -34,27 +34,36 @@ function draw() {
     background(0);
 
     if(state === 'title') {
-        // Title
-        fill(255);
-        text('Life', width/2, height/2);
+        title();
     }
     else if (state === 'animation') {
-        // Animation
-        circle.x = circle.x + circle.vx;
-        circle.y = circle.y + circle.vy;
-    
-        if(circle.x > width) {
-            state = 'ending';
-        }
-        ellipse(circle.x, circle.y, circle.size);
+        animation();
     }
     else if (state === 'ending') {
-        // Ending
-        fill(127);
-        text('It all over', width/2, height/2);
-
+        ending();
     }
 
+}
+
+function title() {
+    fill(255);
+    text('Life', width/2, height/2);
+}
+
+function animation() {
+        
+    circle.x = circle.x + circle.vx;
+    circle.y = circle.y + circle.vy;
+        
+    if(circle.x > width) {
+        state = 'ending';
+    }
+     ellipse(circle.x, circle.y, circle.size);
+}
+
+function ending() {
+    fill(127);
+    text('It all over', width/2, height/2);
 }
 
 function keyPressed() {
