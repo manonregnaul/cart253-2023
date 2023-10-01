@@ -6,7 +6,14 @@
 
 "use strict";
 
-let bg = 0;
+let circle = {
+    x: 250, 
+    y: 250, 
+    size: 100, 
+    vx: 0, 
+    vy: 0, 
+    speed: 2
+}
 
 
 
@@ -17,23 +24,14 @@ function setup() {
 
 
 function draw() {
-    background(bg);
+    background(0);
 
-    textAlign(CENTER, CENTER);
-    textSize(64);
-    fill(255);
-    text(key, width/2, height/2)
-    }
+    circle.vx = random(-circle.speed, circle.speed);
+    circle.vy = random(-circle.speed, circle.speed);
 
-function keyPressed() {
-    if(key === 'a') {
-        bg = 0;
-    }
-    else if(key === 'b') {
-        bg = 127;
-    }
-    else if (key === 'c') {
-        bg = 255;
-    }
+    circle.x = circle.x + circle.vx;
+    circle.y = circle.y + circle.vy;
+
+    ellipse(circle.x, circle.y, circle.size);
+
 }
- 
