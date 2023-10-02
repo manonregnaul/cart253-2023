@@ -76,7 +76,7 @@ function draw() {
 
 }
 
-function title() {ç
+function title() {
     push();
     textSize(64);
     fill(200, 100, 100);
