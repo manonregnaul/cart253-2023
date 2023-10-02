@@ -16,22 +16,23 @@
 
 
 let police = {
-    x: 
-    y:
-    w:
-    h:
-    vx:
-    vy:
+    x: 400,
+    y: 100,
+    w: 70,
+    h: 50,
+    tl: 20,
+    vx: 0,
+    vy: 0,
     speed: 3
 
 }
 
 let user = {
-    x: 
-    y:
-    size:
-    vx:
-    vy:
+    x: 100,
+    y: 400,
+    size: 70,
+    vx: 0,
+    vy: 0,
     speed: 3
 }
 
@@ -47,12 +48,60 @@ function preload() {
 // Created a canvas and our setupCircles 
 function setup() {
     createCanvas (500, 500);
+
+    // Assign random velocity 
+    police.vx = random(-police.speed, police.speed);
+    police.vy = random(-police.speed, police.speed);
+
+    user.vx = random(-user.speed, user.speed);
+    user.vy = random(-user.speed, user.speed);
 }
 
 
-/**
- * Description of draw()
-*/
+
 function draw() {
+    background(234, 174, 151, 92);
 
+    // Police moves 
+    police.x += police.vx;
+    police.y += police.vy;
+
+
+    // User moves 
+    user.x += user.vx
+    user.y += user.vy
+
+
+    // Display police
+    push();
+    if(police.x > 400/3){
+        if(police.x < 2 * 400/3){
+            fill(255, 0, 0);
+        }
+       }
+    else {
+        fill(0, 0, 255);
+    }
+    rect(CENTER);
+    strokeWeight(3);
+    stroke(255);
+    rect(police.x, police.y, police.w, police.h, police.tl);
+    fill(0, 0, 255);
+    pop();
+
+
+    // Display user
+    push();
+    strokeWeight(10);
+    stroke(157, 87, 242, 95);
+    fill(90, 219, 200, 86);
+    ellipse(user.x, user.y, user.size)
+    pop();
 }
+
+
+    // Check for the user's position in the lower west of the canvas 
+
+
+
+    // Check for the circles overlapping
