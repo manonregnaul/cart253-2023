@@ -65,8 +65,23 @@ function draw() {
     
     background(234, 174, 151, 92);
 
-    
-    // title 
+    if (state === 'title') {
+        title();
+    }
+    else if (state === 'simulation') {
+        simulation ();
+    }
+    else if (state === 'procrastination') {
+        procrastination ();
+    }
+    else if (state === 'noProcrastination') {
+        noProcrastination ();
+    }
+
+
+}
+
+function title () {
     push();
     textSize(40);
     fill(200, 100, 100);
@@ -74,23 +89,23 @@ function draw() {
     textAlign(CENTER, CENTER);
     text('PROCRASTINATION TONIGHT?', width/2, height/2);
     pop();
+}
 
-
+function simulation() {
     move();
     display();
     checkUserPosition();
-    checkOverlap ();
-
+    checkOverlap ();  
 }
 
-function move(){
+function move() {
     // Police moves 
     police.x += police.vx;
     police.y += police.vy;
     // User moves 
     user.x += user.vx
     user.y += user.vy
-    }
+}
 
 
 function display(){
@@ -123,7 +138,7 @@ function display(){
 function checkUserPosition() {
      // Check for the user's position in the lower east of the canvas 
         if (user.x > width/3 || user.y > height/3) {
-            state = 'PROCRASTINATION !'
+            state = 'procrastination'
         }
     
     
@@ -142,9 +157,17 @@ function checkOverlap () {
     let d = dist(police.x, police.y, user.x, user.y)
 
     if (d < police.size/2 + user.size/2) {
-      state = 'NO PROCRASTINATION'
+      state = 'noProcrastination'
     }
 }
+
+function keyPressed () {
+    // Have to press the space bar to beggin the simulation 
+
+
+    // Have to control the arrow in order to control the simulation 
+}
+
 
 
 
