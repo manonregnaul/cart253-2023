@@ -98,6 +98,27 @@ function simulation() {
     checkOverlap ();  
 }
 
+
+function noProcrastination() {
+    push();
+    textSize(64);
+    fill(255)
+    textFont('Charlottenburg');
+    textAlign(CENTER, CENTER);
+    text('NO PROCRASTINATION!!', width/2, height/2);
+    pop();
+}
+
+function procrastion() {
+    push();
+    textSize(64);
+    fill(0, 0, 255);
+    textFont('Charlottenburg');
+    textAlign(CENTER, CENTER);
+    text('NO PROCRASTINATION!!', width/2, height/2);
+    pop();
+}
+
 function move() {
     // Police moves 
     police.x += police.vx;
@@ -170,17 +191,7 @@ function keyPressed () {
     // Have to control the arrow in order to control the simulation 
 }
 
-function noProcrastination() {
-    if(checkOverlap){
-        state = 'noProcrastination'
-    }
-}
 
-function procrastion() {
-    if(checkUserPosition) {
-        state = 'procrastination'
-    }
-}
 
 
 
