@@ -163,11 +163,24 @@ function checkOverlap () {
 
 function keyPressed () {
     // Have to press the space bar to beggin the simulation 
-
+    if (state === 'title') {
+        state = 'simulation';
+    }
 
     // Have to control the arrow in order to control the simulation 
 }
 
+function noProcrastination() {
+    if(checkOverlap){
+        state = 'noProcrastination'
+    }
+}
+
+function procrastion() {
+    if(checkUserPosition) {
+        state = 'procrastination'
+    }
+}
 
 
 
