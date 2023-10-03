@@ -70,6 +70,7 @@ function draw() {
     push();
     textSize(40);
     fill(200, 100, 100);
+    textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
     text('PROCRASTINATION TONIGHT?', width/2, height/2);
     pop();
