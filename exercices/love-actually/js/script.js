@@ -60,7 +60,10 @@ function setup() {
 
 
 function draw() {
+    
+    
     background(234, 174, 151, 92);
+
 
     // Police moves 
     police.x += police.vx;
@@ -74,11 +77,9 @@ function draw() {
 
     // Display police
     push();
-    if(police.x > 400/3){
-        if(police.x < 2 * 400/3){
+    if(police.x > 500/2){
             fill(255, 0, 0);
         }
-       }
     else {
         fill(0, 0, 255);
     }
@@ -97,11 +98,32 @@ function draw() {
     fill(90, 219, 200, 86);
     ellipse(user.x, user.y, user.size)
     pop();
-}
-
-
-    // Check for the user's position in the lower west of the canvas 
 
 
 
-    // Check for the circles overlapping
+    // Check for the user's position in the lower east of the canvas 
+
+
+
+    // If in the lower east of the canvas
+    if (user.x < 0 || circle.x > width || circle.y < 0 || circle.y > height) {
+        return true;
+      }
+      else {
+        return false;
+      }
+
+
+    // Check for the protagonists overlapping
+
+
+
+
+
+      // If overlapping 
+
+
+    }
+
+
+  
