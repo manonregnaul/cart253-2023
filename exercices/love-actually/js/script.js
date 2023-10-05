@@ -39,7 +39,7 @@ let user = {
 
 let state = 'title'; // Can be: title, simulation, yes, no
 
-
+let numStatic = 1000;  
 
 
 function preload() {
@@ -62,8 +62,8 @@ function setup() {
 
 function draw() {
     
-    
-    background(234, 174, 151, 92);
+    displayBackground();
+
 
     if (state === 'title') {
         title();
@@ -72,12 +72,25 @@ function draw() {
         simulation ();
     }
     else if (state === 'procrastination') {
-        procrastination ();
+        procrastination();
     }
     else if (state === 'noProcrastination') {
         noProcrastination ();
     }
 
+
+}
+
+function displayBackground () {
+    background(234, 174, 151, 92);
+
+    // Display num static
+    for (let i = 0; i < numStatic; i++) {
+        let x = random(0, width);
+        let y = random(0, height);
+        stroke(255);
+        point(x, y);
+      }
 
 }
 
@@ -107,6 +120,8 @@ function noProcrastination() {
     textAlign(CENTER, CENTER);
     text('NO PROCRASTINATION!!', width/2, height/2);
     pop();
+
+    checkOverlap ();
 }
 
 function procrastion() {
@@ -189,6 +204,7 @@ function keyPressed () {
     }
 
     // Have to control the arrow in order to control the simulation 
+    
 }
 
 
