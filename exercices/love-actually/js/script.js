@@ -24,7 +24,7 @@ let police = {
     size: 100,
     vx: 0,
     vy: 0,
-    speed: 2
+    speed: 1.5
 
 }
 
@@ -90,21 +90,29 @@ function draw() {
 }
 
 function displayBackground () {
+    
     background(234, 174, 200, 92);
+    stroke(0);
+    strokeWeight(10);
+     
 
     // Display num static
+    push();
     for (let i = 0; i < numStatic; i++) {
         let x = random(0, width);
         let y = random(0, height);
         stroke(255);
         point(x, y);
       }
+    pop();
 
 }
 
 function title () {
     push();
     textSize(40);
+    stroke(0);
+    strokeWeight(2);
     fill(255, 100, 0);
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
@@ -123,7 +131,9 @@ function simulation() {
 function noProcrastination() {
     push();
     textSize(30);
-    fill(255)
+    stroke(0, 0, 100);
+    strokeWeight(1);
+    fill(0, 0, 255); 
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
     text('NO PROCRASTINATION!!', width/2, height/2);
@@ -134,8 +144,9 @@ function noProcrastination() {
 
 function procrastination() {
     push();
-    textSize(30);
-    fill(0, 0, 255);
+    textSize(50);
+    strokeWeight(2);
+    fill(100, 0, 255);
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
     text('PROCRASTINATION!!', width/2, height/2);
