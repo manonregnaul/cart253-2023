@@ -21,20 +21,20 @@ let police = {
     w: 70,
     h: 50,
     tl: 20,
-    size: 70,
+    size: 100,
     vx: 0,
     vy: 0,
-    speed: 3
+    speed: 2
 
 }
 
-let user = {
+let user = { 
     x: 100,
     y: 400,
-    size: 70,
+    size: 100,
     vx: 0,
     vy: 0,
-    speed: 3
+    speed: 5 
 }
 
 let state = 'title'; // Can be: title, simulation, yes, no
@@ -50,12 +50,7 @@ function preload() {
 function setup() {
     createCanvas (500, 500);
 
-    // Assign random velocity 
-    police.vx = random(-police.speed, police.speed);
-    police.vy = random(-police.speed, police.speed);
 
-    user.vx = random(-user.speed, user.speed);
-    user.vy = random(-user.speed, user.speed);
 }
 
 
@@ -64,25 +59,38 @@ function draw() {
     
     displayBackground();
 
+    if (keyIsDown (UP_ARROW)) {
+        user.y = user.y - user.speed;   
+    }
+    else if (keyIsDown (DOWN_ARROW)) {
+        user.y = user.y + user.speed;
+    }
+    else if (keyIsDown (LEFT_ARROW)) {
+        user.x = user.x -  user.speed;
+    }
+    else if (keyIsDown (RIGHT_ARROW)){
+        user.x = user.x + user.speed; 
+    }
+
 
     if (state === 'title') {
         title();
     }
     else if (state === 'simulation') {
-        simulation ();
+        simulation();
     }
     else if (state === 'procrastination') {
         procrastination();
     }
     else if (state === 'noProcrastination') {
-        noProcrastination ();
+        noProcrastination();
     }
 
 
 }
 
 function displayBackground () {
-    background(234, 174, 151, 92);
+    background(234, 174, 200, 92);
 
     // Display num static
     for (let i = 0; i < numStatic; i++) {
@@ -97,7 +105,7 @@ function displayBackground () {
 function title () {
     push();
     textSize(40);
-    fill(200, 100, 100);
+    fill(255, 100, 0);
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
     text('PROCRASTINATION TONIGHT?', width/2, height/2);
@@ -114,7 +122,7 @@ function simulation() {
 
 function noProcrastination() {
     push();
-    textSize(64);
+    textSize(30);
     fill(255)
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
@@ -124,20 +132,34 @@ function noProcrastination() {
     checkOverlap ();
 }
 
-function procrastion() {
+function procrastination() {
     push();
-    textSize(64);
+    textSize(30);
     fill(0, 0, 255);
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
-    text('NO PROCRASTINATION!!', width/2, height/2);
+    text('PROCRASTINATION!!', width/2, height/2);
     pop();
 }
 
 function move() {
     // Police moves 
-    police.x += police.vx;
-    police.y += police.vy;
+    // police.x += police.vx;
+    // police.y += police.vy;
+    if (police.x > user.x) {
+        police.x -= police.speed;
+    }
+    else if (police.x < user.x) {
+        police.x += police.speed;
+    }
+    else if (police.y > user.y) {
+        police.y -= police.speed;
+    }
+    else if (police.y < user.y) {
+        police.y += police.speed;
+    }
+
+
     // User moves 
     user.x += user.vx
     user.y += user.vy
@@ -173,7 +195,7 @@ function display(){
 
 function checkUserPosition() {
      // Check for the user's position in the lower east of the canvas 
-        if (user.x > width/3 || user.y > height/3) {
+        if (user.x > (width*2/3) && user.y < height/3) {
             state = 'procrastination'
         }
     
@@ -188,7 +210,7 @@ function checkUserPosition() {
     
 }
 
-function checkOverlap () {
+function checkOverlap() {
     // Check for the protagonists overlapping
     let d = dist(police.x, police.y, user.x, user.y)
 
@@ -197,15 +219,26 @@ function checkOverlap () {
     }
 }
 
-function keyPressed () {
+
+
+
+
+
+//function keyPressed () {
+
+
+
+
+function keyPressed() {
     // Have to press the space bar to beggin the simulation 
     if (state === 'title') {
         state = 'simulation';
     }
 
-    // Have to control the arrow in order to control the simulation 
-    
-}
+   
+
+          }
+
 
 
 
