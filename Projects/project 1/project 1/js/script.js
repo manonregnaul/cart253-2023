@@ -128,30 +128,58 @@ function draw() {
 
 
     // Display ball 
+    push();
     ellipse(ball.x, ball.y, ball.size);
+    pop();
 
 
     // Display Human 
+    push();
     ellipse(human.x, human.y, human.size);
+    pop();
 
 
     // Display Robot
+    push();
     rect(robot.x, robot.y, robot.h, robot.w);
+    pop();
 
 
 
-    // HumanOverlap 
-    // RobotOverlap 
+    // checkHumanOverlap 
+    push();
+    let d = dist(human.x, human.y, ball.x, ball.y)
+
+    if (d < human.size/2 + ball.size/2){
+        state = 'human'
+    }
+    
+    pop();
+
+
+
+
+    // checkRobotOverlap 
+    push();
+    let d = dist(human.x, human.y, ball.x, ball.y)
+
+    if (d < human.size/2 + ball.size/2){
+        state = 'human'
+    }
+    
+    pop();
 
 }
 
 
 
 function mousePressed(){
+    push();
     let d = dist(mouseX, mouseY, human.x, human.y)
     if(d < human.size/2){
         human.dragging = true;
     }
+    pop();
 }
 
 function mouseReleased (){
