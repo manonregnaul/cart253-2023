@@ -137,6 +137,9 @@ function draw() {
 
     // Human moves 
 
+
+    
+
     // Robot moves 
     if(ball.x > robot.x){
         robot.ax = robot.acceleration;
