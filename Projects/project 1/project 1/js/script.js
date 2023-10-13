@@ -144,3 +144,23 @@ function draw() {
     // RobotOverlap 
 
 }
+
+
+
+function mousePressed(){
+    let d = dist(mouseX, mouseY, human.x, human.y)
+    if(d < human.size/2){
+        human.dragging = true;
+    }
+}
+
+function mouseReleased (){
+    human.dragging = false;
+}
+
+function mouseDragged (){
+    if (human.dragging) {
+        human.x = mouseX;
+        human.y = mouseY;
+    }
+}
