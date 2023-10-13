@@ -151,10 +151,10 @@ function draw() {
 
     // checkHumanOverlap 
     push();
-    let d = dist(human.x, human.y, ball.x, ball.y)
+    let d2 = dist(human.x, human.y, ball.x, ball.y);
 
     if (d < human.size/2 + ball.size/2){
-        state = 'human'
+        state = 'human';
     }
     
     pop();
@@ -164,10 +164,10 @@ function draw() {
 
     // checkRobotOverlap 
     push();
-    let d = dist(robot.x, robot.y, ball.x, ball.y)
+    let d3 = dist(robot.x, robot.y, ball.x, ball.y);
 
     if (d < robot.size + ball.size/2){
-        state = 'robot'
+        state = 'robot';
     }
     
     pop();
