@@ -21,6 +21,7 @@ let ball = {
     y: 250,
     vx: 0,
     vy: 0,
+    speed: 3,
     size: 30 
 }
 
@@ -86,7 +87,7 @@ function setup() {
 function draw() {
 
 
-    displayBackground();
+    
 
     if(state === 'title') {
         title();
@@ -94,27 +95,41 @@ function draw() {
     else if (state === 'simulation'){
         simulation();
     }
-    else if (state === 'human'){
-        human();
+    else if (state === 'humanWon'){
+        humanWon();
     }
-    else if(state === 'robot'){
-        robot();
+    else if(state === 'robotWon'){
+        robotWon();
     }
 }
 
-function title (){
+
+
+
+
+
+
+function title(){
+
+    displayBackground();
+
     push();
-    textSize(40);
+    textSize(80);
     stroke(0);
     strokeWeight(2);
-    fill(255, 100, 0);
+    fill(0, 200, 0);
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
-    text('Human or Robot football', width/2, height/2);
+    text('Human or Robot football?', width/2, height/2);
     pop();
 }
 
-function simulation (){
+
+
+
+
+function simulation(){
+    image(stadium, -1160, -200);
     move();
     display();
     checkHumanOverlap();
@@ -124,11 +139,55 @@ function simulation (){
 
 
 
+function humanWon() {
+    push();
+    textSize(30);
+    stroke(0, 0, 100);
+    strokeWeight(1);
+    fill(0, 0, 255); 
+    textFont('Charlottenburg');
+    textAlign(CENTER, CENTER);
+    text('HUMAN', width/2, height/2);
+    pop();
+
+
+
+    checkHumanOverlap();
+}
+
+
+
+
+function robotWon() {
+    push();
+    textSize(50);
+    strokeWeight(2);
+    fill(100, 0, 255);
+    textFont('Charlottenburg');
+    textAlign(CENTER, CENTER);
+    text('ROBOT', 352, 250);
+    pop();
+
+
+    checkRobotOverlap();
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 function displayBackground(){
-    image(stadium, -1160, -200);
+  
+    background(25, 12, 100);
 
     //Display numStatic 
     push();
@@ -153,6 +212,9 @@ function move(){
     else if (ball.y > width || ball.x < 0){
         ball.speed = -ball.speed;
     }
+
+    ball.x += ball.vx 
+    ball.y += ball.vy
 
     // Robot moves 
     if(ball.x > robot.x){
@@ -185,13 +247,20 @@ function move(){
 function display(){
      // Display ball 
     push();
+    fill(255, 167, 1);
+    strokeWeight(6);
+    stroke(252, 142, 88);
     ellipse(ball.x, ball.y, ball.size);
     pop();
 
 
     // Display Human 
     push();
+    strokeWeight(10)
+    stroke(0)
+    fill(252, 114, 88);
     ellipse(human.x, human.y, human.size);
+   
     pop();
 
 
@@ -200,13 +269,10 @@ function display(){
     rect(CENTER);
     strokeWeight(5);
     stroke(100);
+    fill(0);
     rect(robot.x, robot.y, robot.h, robot.w,);
     pop();
 }
-
-
-
-
 
 
 
@@ -217,11 +283,6 @@ function checkHumanOverlap(){
         state = 'human';
     }
 }
-
-
-
-
-
 
 
 
