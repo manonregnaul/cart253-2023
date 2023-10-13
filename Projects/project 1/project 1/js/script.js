@@ -31,34 +31,12 @@ let human = {
     y: 750, 
     size: 100,
     dragging: false, 
-    //humanEye1: {
-       // x:
-       // y: 
-        //size: 20,
-        //fill: 255, 0, 0
-
-    //}
-    //humanEye2 : {
-     //   x: 
-    //    y:
-    //    size:
-    //    fill:
-    //}
-    //humanMouse : {
-    //    x:
-    //    y:
-     //   h:
-    //    w: 
-     //   round:
-     //   fill:
-    //}
 }
 
 
 let robot = {
-    x: 250, //windowWidth/2 doesn't work
-    y: 500, //windowHeight doesn't work (maybe if it's because it's a p5 function?)
-    h: 100,
+    x: 250, 
+    y: 500, 
     w: 70,
     vx: 0,
     vy: 0,
@@ -66,22 +44,6 @@ let robot = {
     ay: 0, 
     acceleration: 0.25,
     maxSpeed: 2
- //   robotEye1: {
- //        x: 
- //       y: 
- //       size:
- //   };
- //   robotEye2 : {
- //       x: 
- //       y: 
- //       size:
- //   };
- //   robotAntene1 : {
- //       x: 
- //       y: 
- //       size:
- //   };
- //   robotAntene2 : {
 }
 
     let state = 'title'; // Can be: title, simulation, yes, no  
@@ -138,7 +100,7 @@ function draw() {
     // Human moves 
 
 
-    
+
 
     // Robot moves 
     if(ball.x > robot.x){
