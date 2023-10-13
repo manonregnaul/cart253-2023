@@ -17,27 +17,28 @@
 
 
 let ball = {
-    x: 500,
-    y: 500,
+    x: 352,
+    y: 250,
     vx: 0,
     vy: 0,
-    size: 70 
+    size: 30 
 }
 
 let stadium;
 
 let human = {
-    x: 1400, 
-    y: 750, 
-    size: 100,
+    x: 500, 
+    y: 250, 
+    size: 70,
     dragging: false, 
 }
 
 
 let robot = {
-    x: 250, 
-    y: 500, 
-    w: 70,
+    x: 160, 
+    y: 220, 
+    h: 70, 
+    w: 50,
     vx: 0,
     vy: 0,
     ax: 0, 
@@ -59,6 +60,13 @@ function preload() {
 }
 
 
+
+
+
+
+
+
+
 // Setup the preloaded images and our stadium canvas surrounded with brown springles 
 function setup() {
     createCanvas(700, 500);
@@ -68,8 +76,58 @@ function setup() {
 
 }
 
+
+
+
+
+
+
 //
 function draw() {
+
+
+    displayBackground();
+
+    if(state === 'title') {
+        title();
+    }
+    else if (state === 'simulation'){
+        simulation();
+    }
+    else if (state === 'human'){
+        human();
+    }
+    else if(state === 'robot'){
+        robot();
+    }
+}
+
+function title (){
+    push();
+    textSize(40);
+    stroke(0);
+    strokeWeight(2);
+    fill(255, 100, 0);
+    textFont('Charlottenburg');
+    textAlign(CENTER, CENTER);
+    text('Human or Robot football', width/2, height/2);
+    pop();
+}
+
+function simulation (){
+    move();
+    display();
+    checkHumanOverlap();
+    checkRobotOverlap();
+}
+
+
+
+
+
+
+
+function displayBackground(){
     image(stadium, -1160, -200);
 
     //Display numStatic 
@@ -82,25 +140,19 @@ function draw() {
         point(x, y);
       }
     pop();
+}
 
 
 
-    // Ball moves 
 
+function move(){
+        // Ball moves 
     if (ball.x > width || ball.x < 0) {
         ball.speed = -ball.speed;
     } 
     else if (ball.y > width || ball.x < 0){
         ball.speed = -ball.speed;
     }
-
-    
-
-
-    // Human moves 
-
-
-
 
     // Robot moves 
     if(ball.x > robot.x){
@@ -122,12 +174,16 @@ function draw() {
     robot.vx = constrain(robot.vx, -circle.maxSpeed, circle.maxSpeed);
     robot.vy = constrain(robot.vy, -circle.maxSpeed, circle.maxSpeed);
 
+}
 
 
 
 
 
-    // Display ball 
+
+
+function display(){
+     // Display ball 
     push();
     ellipse(ball.x, ball.y, ball.size);
     pop();
@@ -144,45 +200,63 @@ function draw() {
     rect(CENTER);
     strokeWeight(5);
     stroke(100);
-    rect(robot.x, robot.y, robot.h, robot.w);
+    rect(robot.x, robot.y, robot.h, robot.w,);
     pop();
-
-
-
-    // checkHumanOverlap 
-    push();
-    let d2 = dist(human.x, human.y, ball.x, ball.y);
-
-    if (d < human.size/2 + ball.size/2){
-        state = 'human';
-    }
-    
-    pop();
-
-
-
-
-    // checkRobotOverlap 
-    push();
-    let d3 = dist(robot.x, robot.y, ball.x, ball.y);
-
-    if (d < robot.size + ball.size/2){
-        state = 'robot';
-    }
-    
-    pop();
-
 }
 
 
 
+
+
+
+
+function checkHumanOverlap(){
+    let d2 = dist(human.x, human.y, ball.x, ball.y);
+
+    if (d2 < human.size/2 + ball.size/2){
+        state = 'human';
+    }
+}
+
+
+
+
+
+
+
+
+function checkRobotOverlap(){  
+    let d3 = dist(robot.x, robot.y, ball.x, ball.y);
+
+    if (d3 < robot.size + ball.size/2){
+        state = 'robot';
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function mousePressed(){
-    push();
+    if(state === 'title'){
+        state = 'simulation'
+    }
+
+
     let d = dist(mouseX, mouseY, human.x, human.y)
     if(d < human.size/2){
         human.dragging = true;
     }
-    pop();
 }
 
 function mouseReleased (){
