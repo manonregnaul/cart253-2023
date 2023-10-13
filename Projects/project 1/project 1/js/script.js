@@ -141,6 +141,9 @@ function draw() {
 
     // Display Robot
     push();
+    rect(CENTER);
+    strokeWeight(5);
+    stroke(100);
     rect(robot.x, robot.y, robot.h, robot.w);
     pop();
 
@@ -161,10 +164,10 @@ function draw() {
 
     // checkRobotOverlap 
     push();
-    let d = dist(human.x, human.y, ball.x, ball.y)
+    let d = dist(robot.x, robot.y, ball.x, ball.y)
 
-    if (d < human.size/2 + ball.size/2){
-        state = 'human'
+    if (d < robot.size + ball.size/2){
+        state = 'robot'
     }
     
     pop();
