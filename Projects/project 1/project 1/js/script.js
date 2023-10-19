@@ -21,7 +21,7 @@ let ball = {
     y: 250,
     vx: 2,
     vy: 3,
-    speed: 3,
+    speed: 10,
     size: 30 
 }
 
@@ -45,7 +45,7 @@ let robot = {
     ax: 0, 
     ay: 0, 
     acceleration: 0.25,
-    maxSpeed: 2
+    maxSpeed: 3
 }
 
     let state = 'title'; // Can be: title, simulation, yes, no  
@@ -165,10 +165,21 @@ function humanWon() {
 }
 
 function robotWon() {
+    background (0);
     push();
-    textSize(50);
+    for (let i = 0; i < numStatic; i++) {
+        let x = random(0, width);
+        let y = random(0, height);
+        stroke(255);
+        strokeWeight(3);
+        point(x, y);
+      }
+    pop();
+
+    push();
+    textSize(150);
     strokeWeight(2);
-    fill(100, 0, 255);
+    fill(200);
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
     text('ROBOT', 352, 250);
@@ -197,9 +208,9 @@ function displayBackground(){
 
 
 
-
+// Bouncing Ball
 function moveBall(){
-        // Ball moves 
+    
     if (ball.x > width || ball.x < 0) {
         ball.speed = -ball.speed;
     } 
@@ -212,6 +223,7 @@ function moveBall(){
 
 }
 
+// The Robot is following the ball. I added a velocity and acceleration in order to make the movement more real
 function moveRobot(){
     if(ball.x < robot.x){
         robot.ax = -robot.acceleration;
@@ -244,7 +256,6 @@ function moveRobot(){
 
 
 function displayBall(){
-     // Display ball 
     push();
     fill(255, 167, 1);
     strokeWeight(6);
@@ -274,7 +285,7 @@ function displayRobot(){
 }
 
 
-
+// If the Human is overlapping the ball. The user wins
 function checkHumanOverlap(){
     let d2 = dist(human.x, human.y, ball.x, ball.y);
 
@@ -284,11 +295,11 @@ function checkHumanOverlap(){
 }
 
 
-
+// If that the Robot which is overlapping the ball. It wins
 function checkRobotOverlap(){  
     let d3 = dist(robot.x, robot.y, ball.x, ball.y);
 
-    if (d3 < robot.size + ball.size/2){
+    if (d3 < robot.h/2 + ball.size/2){
         state = 'robotWon';
     }
     
@@ -296,7 +307,7 @@ function checkRobotOverlap(){
 
 
 
-
+// All of this function allow the user the dragged the Human face with the mouse and to touch the ball in an easier way
 function mousePressed(){
     if(state === 'title'){
         state = 'simulation'
