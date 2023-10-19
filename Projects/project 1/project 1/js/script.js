@@ -124,20 +124,16 @@ function title(){
     pop();
 }
 
-
-
-
-
 function simulation(){
     image(stadium, -1160, -200);
-    move();
-    display();
+    ballMove();
+    robotMove();
+    displayBall();
+    displayHuman();
+    displayRobot();
     checkHumanOverlap();
     checkRobotOverlap();
 }
-
-
-
 
 function humanWon() {
     push();
@@ -155,9 +151,6 @@ function humanWon() {
     checkHumanOverlap();
 }
 
-
-
-
 function robotWon() {
     push();
     textSize(50);
@@ -171,18 +164,6 @@ function robotWon() {
 
     checkRobotOverlap();
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function displayBackground(){
@@ -204,7 +185,7 @@ function displayBackground(){
 
 
 
-function move(){
+function ballMove(){
         // Ball moves 
     if (ball.x > width || ball.x < 0) {
         ball.speed = -ball.speed;
@@ -216,7 +197,9 @@ function move(){
     ball.x += ball.vx 
     ball.y += ball.vy
 
-    // Robot moves 
+}
+
+function robotMove(){
     if(ball.x > robot.x){
         robot.ax = robot.acceleration;
     }
@@ -235,8 +218,8 @@ function move(){
 
     robot.vx = constrain(robot.vx, -circle.maxSpeed, circle.maxSpeed);
     robot.vy = constrain(robot.vy, -circle.maxSpeed, circle.maxSpeed);
-
 }
+
 
 
 
@@ -256,8 +239,8 @@ function display(){
 
     // Display Human 
     push();
-    strokeWeight(10)
-    stroke(0)
+    strokeWeight(10);
+    stroke(121, 63, 23);
     fill(252, 114, 88);
     ellipse(human.x, human.y, human.size);
    
