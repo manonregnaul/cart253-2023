@@ -227,7 +227,7 @@ function robotMove(){
 
 
 
-function display(){
+function displayBall(){
      // Display ball 
     push();
     fill(255, 167, 1);
@@ -235,19 +235,19 @@ function display(){
     stroke(252, 142, 88);
     ellipse(ball.x, ball.y, ball.size);
     pop();
+}
 
-
-    // Display Human 
+function displayHuman(){
     push();
     strokeWeight(10);
     stroke(121, 63, 23);
     fill(252, 114, 88);
     ellipse(human.x, human.y, human.size);
-   
     pop();
+} 
 
 
-    // Display Robot
+function displayRobot(){
     push();
     rect(CENTER);
     strokeWeight(5);
@@ -263,7 +263,7 @@ function checkHumanOverlap(){
     let d2 = dist(human.x, human.y, ball.x, ball.y);
 
     if (d2 < human.size/2 + ball.size/2){
-        state = 'human';
+        state = 'humanWon';
     }
 }
 
@@ -273,20 +273,10 @@ function checkRobotOverlap(){
     let d3 = dist(robot.x, robot.y, ball.x, ball.y);
 
     if (d3 < robot.size + ball.size/2){
-        state = 'robot';
+        state = 'robotWon';
     }
     
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
