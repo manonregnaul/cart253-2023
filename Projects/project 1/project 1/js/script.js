@@ -19,8 +19,8 @@
 let ball = {
     x: 352,
     y: 250,
-    vx: 0,
-    vy: 0,
+    vx: 2,
+    vy: 3,
     speed: 3,
     size: 30 
 }
@@ -126,8 +126,8 @@ function title(){
 
 function simulation(){
     image(stadium, -1160, -200);
-    ballMove();
-    robotMove();
+    moveBall();
+    moveRobot();
     displayBall();
     displayHuman();
     displayRobot();
@@ -136,11 +136,24 @@ function simulation(){
 }
 
 function humanWon() {
+
+    background (170, 0, 100);
     push();
-    textSize(30);
-    stroke(0, 0, 100);
-    strokeWeight(1);
-    fill(0, 0, 255); 
+    for (let i = 0; i < numStatic; i++) {
+        let x = random(0, width);
+        let y = random(0, height);
+        stroke(255);
+        strokeWeight(3);
+        point(x, y);
+      }
+    pop();
+
+
+    push();
+    textSize(80);
+    stroke(100, 0, 100);
+    strokeWeight(3);
+    fill(100, 0, 200); 
     textFont('Charlottenburg');
     textAlign(CENTER, CENTER);
     text('HUMAN', width/2, height/2);
@@ -185,39 +198,42 @@ function displayBackground(){
 
 
 
-function ballMove(){
+function moveBall(){
         // Ball moves 
     if (ball.x > width || ball.x < 0) {
         ball.speed = -ball.speed;
     } 
-    else if (ball.y > width || ball.x < 0){
+    else if (ball.y > height || ball.y < 0){
         ball.speed = -ball.speed;
     }
 
-    ball.x += ball.vx 
-    ball.y += ball.vy
+    ball.x += ball.speed;
+    ball.y += ball.speed;
 
 }
 
-function robotMove(){
-    if(ball.x > robot.x){
-        robot.ax = robot.acceleration;
-    }
-    else if(ball.x < robot.x){
+function moveRobot(){
+    if(ball.x < robot.x){
         robot.ax = -robot.acceleration;
     }
-    else if(ball.y > robot.y){
+    else {
         robot.ax = robot.acceleration;
     }
-    else if (ball.x < robot.x){
-        robot.ax = -robot.acceleration;
+    
+    if(ball.y < robot.y){
+        robot.ay = -robot.acceleration;
+    }
+    else {
+        robot.ay = robot.acceleration;
     }
 
-    robot.vx += robot.ax 
-    robot.vy += robot.ay 
+    robot.vx += robot.ax;
+    robot.vx = constrain(robot.vx, -robot.maxSpeed, robot.maxSpeed);
+    robot.vy += robot.ay;
+    robot.vy = constrain(robot.vy, -robot.maxSpeed, robot.maxSpeed);
 
-    robot.vx = constrain(robot.vx, -circle.maxSpeed, circle.maxSpeed);
-    robot.vy = constrain(robot.vy, -circle.maxSpeed, circle.maxSpeed);
+    robot.x += robot.vx;
+    robot.y += robot.vy;
 }
 
 
