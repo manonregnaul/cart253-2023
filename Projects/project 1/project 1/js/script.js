@@ -19,9 +19,9 @@
 let ball = {
     x: 352,
     y: 250,
-    vx: 2,
-    vy: 3,
-    speed: 10,
+    vx: 15,
+    vy: 15,
+    speed: 5,
     size: 30 
 }
 
@@ -30,7 +30,7 @@ let stadium;
 let human = {
     x: 500, 
     y: 250, 
-    size: 70,
+    size: 30,
     dragging: false, 
 }
 
@@ -44,8 +44,8 @@ let robot = {
     vy: 0,
     ax: 0, 
     ay: 0, 
-    acceleration: 0.25,
-    maxSpeed: 3
+    acceleration: 0.5,
+    maxSpeed: 7
 }
 
     let state = 'title'; // Can be: title, simulation, yes, no  
@@ -122,6 +122,14 @@ function title(){
     textAlign(CENTER, CENTER);
     text('Human or Robot football?', width/2, height/2);
     pop();
+
+    push();
+    textSize(50);
+    fill(0, 160, 0);
+    textFont('Charlottenburg');
+    text('Drag the Human with you mouse!', 90, 320);
+    pop();
+
 }
 
 function simulation(){
@@ -212,14 +220,14 @@ function displayBackground(){
 function moveBall(){
     
     if (ball.x > width || ball.x < 0) {
-        ball.speed = -ball.speed;
+        ball.vx = -ball.vx;
     } 
     else if (ball.y > height || ball.y < 0){
-        ball.speed = -ball.speed;
+        ball.vy = -ball.vy;
     }
 
-    ball.x += ball.speed;
-    ball.y += ball.speed;
+    ball.x += ball.vx;
+    ball.y += ball.vy;
 
 }
 
