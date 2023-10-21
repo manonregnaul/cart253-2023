@@ -16,24 +16,6 @@ let pinkSchool = [];
 let blueSchoolSize = 40;
 let pinkSchoolSize = 40;
 
-let blueFish = {
-    x: 10, 
-    y: 10, 
-    size: 70, 
-    vx: 0, 
-    vy: 0, 
-    speed: 1,
-    displayBlueFish: true
-}; 
-//return blueFish;
-let pinkFish = {
-    x: 100, 
-    y: 100,
-    size: 100, 
-    vx: 0, 
-    vy: 0, 
-    speed: 0.25,
-};
 
 
 function preload() {
@@ -64,6 +46,10 @@ function createBlueFish(x, y) {
         size: 10, 
         vx: 0, 
         vy: 0, 
+        ax: 0,
+        ay: 0, 
+        acceleration: 2,
+        maxSpeed:7,
         speed: 2,
         displayBlueFish: false
     }; 
@@ -81,6 +67,10 @@ function createPinkFish(x, y) {
     };
     return pinkFish;
 }
+
+
+
+
 
 function draw() {
     background(0, 0, 255);
@@ -101,7 +91,12 @@ function draw() {
         displayPinkFish(pinkSchool[i]);
     }
 
+
+
 }
+
+
+
 
 function moveBlueFish() {
     let change = random(0, 1);
@@ -110,13 +105,35 @@ function moveBlueFish() {
         blueFish.vy = random(-blueFish.speed, blueFish.speed);
     }
 
-    // Move the fish
-    blueFish.x += blueFish.vx;
-    blueFish.y += blueFish.vy;
-
     // Constrain the blue fish to the canvas 
     blueFish.x = constrain(blueFish.x, 0, width);
     blueFish.y = constrain(blueFish.y, 0, height);
+
+
+    // If the blue fish is a a minimum distance of the pink, it would run away (Added some velocity to the movement like Pippin examples)
+    if(pinkFish.x < blueFish.x){
+        blueFish.ax = blueFish.acceleration;
+    }
+    else {
+        blueFish.ax = -blueFish.acceleration;
+    }
+
+    if(pinkFish.y < blueFish.y){
+        blueFish.ay = blueFish.acceleration;
+    }
+    else {
+        blueFish.ay = -blueFish.acceleration;
+    }
+
+    blueFish.vx += blueFish.ax;
+    blueFish.vx = constrain(blueFish.vx, -blueFish.maxSpeed, blueFish.maxSpeed);
+    blueFish.vy += blueFish.ay;
+    blueFish.vy = constrain(blueFish.vy, - blueFish.maxSpeed, blueFish.maxSpeed);
+
+
+    // Move the fish
+    blueFish.x += blueFish.vx;
+    blueFish.y += blueFish.vy;
 }
 
 function displayBlueFish() {
@@ -126,6 +143,10 @@ function displayBlueFish() {
     ellipse(blueFish.x, blueFish.y, blueFish.size);
     pop();
 }
+
+
+
+
 
 
 function movePinkFish() {
@@ -151,6 +172,11 @@ function displayPinkFish() {
     ellipse(pinkFish.x, pinkFish.y, pinkFish.size);
     pop();
 }
+
+
+
+
+
 
 
 // If the user touch the blue fish, the latter would disappear
