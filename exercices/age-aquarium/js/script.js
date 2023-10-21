@@ -2,7 +2,7 @@
  * Exercice : Age of aquarium
  * Manon Regnault
  * 
- * Everytime the user touch a blue fish, the fish will disapear and everytime the user click on the canvas 
+ * Everytime the user touch a blue fish, the fish will disapear and everytime the user press the space key on the canvas 
  * a pink fish will appear. The goal would be to kill all the blue fish in order to repopulate the aquarium with 
  * pink fish. Furthermore, once a pink fish will appear on the aquarium the blue fish would run away from the pink one.
  * 
@@ -14,10 +14,26 @@ let blueSchool = [];
 let pinkSchool = [];
 
 let blueSchoolSize = 40;
- 
+let pinkSchoolSize = 40;
 
-
-
+let blueFish = {
+    x: 10, 
+    y: 10, 
+    size: 70, 
+    vx: 0, 
+    vy: 0, 
+    speed: 1,
+    displayBlueFish: true
+}; 
+//return blueFish;
+let pinkFish = {
+    x: 100, 
+    y: 100,
+    size: 100, 
+    vx: 0, 
+    vy: 0, 
+    speed: 0.25,
+};
 
 
 function preload() {
@@ -29,11 +45,11 @@ function preload() {
 function setup() {
     createCanvas(500, 500);
 
-    for (let i = 0; i < 40; i++){
+    for (let i = 0; i < blueSchoolSize; i++){
         blueSchool[i] = createBlueFish(random(0, width), random(0, height));
     }
 
-    for (let i = 0; i < 40; i++){
+    for (let i = 0; i < pinkSchoolSize; i++){
         let pinkFish = createPinkFish(random(0, width), random(0, height));
         pinkSchool.push(pinkFish);
         
@@ -43,20 +59,21 @@ function setup() {
 
 function createBlueFish(x, y) {
     let blueFish = {
-        x: x, 
-        y: y, 
+        x: 10, 
+        y: 10, 
         size: 10, 
         vx: 0, 
         vy: 0, 
-        speed: 2
+        speed: 2,
+        displayBlueFish: false
     }; 
     return blueFish;
 }
 
 function createPinkFish(x, y) {
     let pinkFish = {
-        x: x, 
-        y: y,
+        x: 10, 
+        y: 10,
         size: 20, 
         vx: 0, 
         vy: 0, 
@@ -68,21 +85,22 @@ function createPinkFish(x, y) {
 function draw() {
     background(0, 0, 255);
 
-    for (let i = 0;  i < 40; i++){
+    for (let i = 0;  i < blueSchool.length; i++){
         moveBlueFish(blueSchool[i]);
     }
 
-    for (let i = 0;  i< 40; i++){
+    for (let i = 0;  i < blueSchool.length; i++){
         displayBlueFish(blueSchool[i]);
     }
 
-    for (let i = 0;  i < 40; i++){
+    for (let i = 0;  i < pinkSchool.length; i++){
         movePinkFish(pinkSchool[i]);
     }
 
-    for (let i = 0;  i< 40; i++){
+    for (let i = 0;  i < pinkSchool.length; i++){
         displayPinkFish(pinkSchool[i]);
     }
+
 }
 
 function moveBlueFish() {
@@ -135,7 +153,15 @@ function displayPinkFish() {
 }
 
 
+// If the user touch the blue fish, the latter would disappear
 function mousePressed() {
+    if(mouseX, mouseY < blueFish.size/2){
+        displayBlueFish = false;
+    }
+}
+
+// When the user is pressing a key, a new pink fish appears
+function keyPressed() {
     let pinkFish = createPinkFish(mouseX,mouseY);
-    pinkSchool.push(pinkFish);
+    pinkSchool.push(pinkFish); 
 }
