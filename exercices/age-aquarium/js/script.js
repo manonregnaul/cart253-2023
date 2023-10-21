@@ -20,7 +20,6 @@ let blueSchoolSize = 40;
 
 
 
-
 function preload() {
 
 }
@@ -30,12 +29,19 @@ function preload() {
 function setup() {
     createCanvas(500, 500);
 
-    for (let i = 0; i < blueSchoolSize; i++){
-        blueSchool [i] = createBlueFish(random(0, width), random(0, height));
+    for (let i = 0; i < 40; i++){
+        blueSchool[i] = createBlueFish(random(0, width), random(0, height));
     }
+
+    for (let i = 0; i < 40; i++){
+        let pinkFish = createPinkFish(random(0, width), random(0, height));
+        pinkSchool.push(pinkFish);
+        
+    }
+
 }
 
-function createBlueFish (x, y) {
+function createBlueFish(x, y) {
     let blueFish = {
         x: x, 
         y: y, 
@@ -47,15 +53,35 @@ function createBlueFish (x, y) {
     return blueFish;
 }
 
+function createPinkFish(x, y) {
+    let pinkFish = {
+        x: x, 
+        y: y,
+        size: 20, 
+        vx: 0, 
+        vy: 0, 
+        speed: 3,
+    };
+    return pinkFish;
+}
+
 function draw() {
     background(0, 0, 255);
 
-    for (let i = 0;  i < blueSchool.length; i++){
-        moveBlueFish(school[i]);
+    for (let i = 0;  i < 40; i++){
+        moveBlueFish(blueSchool[i]);
     }
 
-    for (let i = 0;  i< blueSchool.length; i++){
-        displayBlueFishBlueFish(school[i]);
+    for (let i = 0;  i< 40; i++){
+        displayBlueFish(blueSchool[i]);
+    }
+
+    for (let i = 0;  i < 40; i++){
+        movePinkFish(pinkSchool[i]);
+    }
+
+    for (let i = 0;  i< 40; i++){
+        displayPinkFish(pinkSchool[i]);
     }
 }
 
@@ -73,9 +99,6 @@ function moveBlueFish() {
     // Constrain the blue fish to the canvas 
     blueFish.x = constrain(blueFish.x, 0, width);
     blueFish.y = constrain(blueFish.y, 0, height);
-
-
-
 }
 
 function displayBlueFish() {
@@ -85,6 +108,32 @@ function displayBlueFish() {
     ellipse(blueFish.x, blueFish.y, blueFish.size);
     pop();
 }
+
+
+function movePinkFish() {
+    let change = random(0, 1);
+    if (change < 0.05) {
+        pinkFish.vx = random(-pinkFish.speed, pinkFish.speed);
+        pinkFish.vy = random(-pinkFish.speed, pinkFish.speed);
+    }
+
+    // Move the fish
+    pinkFish.x += pinkFish.vx;
+    pinkFish.y += pinkFish.vy;
+
+    // Constrain the blue fish to the canvas 
+    pinkFish.x = constrain(pinkFish.x, 0, width);
+    pinkFish.y = constrain(pinkFish.y, 0, height);
+}
+
+function displayPinkFish() {
+    push();
+    fill(100, 0, 0);
+    noStroke();
+    ellipse(pinkFish.x, pinkFish.y, pinkFish.size);
+    pop();
+}
+
 
 function mousePressed() {
     let pinkFish = createPinkFish(mouseX,mouseY);
