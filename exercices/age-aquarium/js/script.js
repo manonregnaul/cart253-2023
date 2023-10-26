@@ -98,7 +98,7 @@ function draw() {
 
 
 
-function moveBlueFish() {
+function moveBlueFish(blueFish, pinkFish) {
     let change = random(0, 1);
     if (change < 0.05) {
         blueFish.vx = random(-blueFish.speed, blueFish.speed);
@@ -111,19 +111,26 @@ function moveBlueFish() {
 
 
     // If the blue fish is a a minimum distance of the pink, it would run away (Added some velocity to the movement like Pippin examples)
-    if(pinkFish.x < blueFish.x){
-        blueFish.ax = blueFish.acceleration;
-    }
-    else {
-        blueFish.ax = -blueFish.acceleration;
+
+     
+
+    for (let i = 0;  i < pinkSchool.length; i++){
+    
+        if(pinkSchool[i].x < blueFish.x){
+            blueFish.ax = blueFish.acceleration;
+        }
+        else {
+            blueFish.ax = -blueFish.acceleration;
+        }
+    
+        if(pinkSchool[i].y < blueFish.y){
+            blueFish.ay = blueFish.acceleration;
+        }
+        else {
+            blueFish.ay = -blueFish.acceleration;
+        }
     }
 
-    if(pinkFish.y < blueFish.y){
-        blueFish.ay = blueFish.acceleration;
-    }
-    else {
-        blueFish.ay = -blueFish.acceleration;
-    }
 
     blueFish.vx += blueFish.ax;
     blueFish.vx = constrain(blueFish.vx, -blueFish.maxSpeed, blueFish.maxSpeed);
@@ -136,7 +143,7 @@ function moveBlueFish() {
     blueFish.y += blueFish.vy;
 }
 
-function displayBlueFish() {
+function displayBlueFish(blueFish) {
     push();
     fill(0, 0, 100);
     noStroke();
@@ -149,7 +156,7 @@ function displayBlueFish() {
 
 
 
-function movePinkFish() {
+function movePinkFish(pinkFish) {
     let change = random(0, 1);
     if (change < 0.05) {
         pinkFish.vx = random(-pinkFish.speed, pinkFish.speed);
