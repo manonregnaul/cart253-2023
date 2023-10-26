@@ -9,10 +9,11 @@
  */
 
 "use strict";
-
+// Create empty arrays 
 let blueSchool = [];
 let pinkSchool = [];
 
+// Create the size of this array in order to use the length in our future loops
 let blueSchoolSize = 200;
 let pinkSchoolSize = 0;
 
@@ -28,10 +29,12 @@ function preload() {
 function setup() {
     createCanvas(500, 500);
 
+    // Create our specific blue Fish one at a time in our specific array (blueSchool)
     for (let i = 0; i < blueSchoolSize; i++){
         blueSchool[i] = createBlueFish(random(0, width), random(0, height));
     }
 
+    // Create our specific pink Fish one at a time in our specific array (blueSchool)
     for (let i = 0; i < pinkSchoolSize; i++){
         let pinkFish = createPinkFish(random(0, width), random(0, height));
         pinkSchool.push(pinkFish);
@@ -77,7 +80,7 @@ function draw() {
     background(10, 120, 130, 20);
 
 
-
+// Called our state in a specific order
     if(state === 'title') {
         title();
     }
@@ -89,6 +92,7 @@ function draw() {
 
 }
 
+// First State of our program 
 function title (){
     background(255);
 
@@ -110,7 +114,10 @@ function title (){
     pop();
 }
 
+// Second state of our program
 function simulation(){
+
+// loop in order to call specific blue fish for our next different functions
     for (let i = 0;  i < blueSchool.length; i++){
         moveBlueFish(blueSchool[i]);
         displayBlueFish(blueSchool[i]);
@@ -118,14 +125,15 @@ function simulation(){
         killBlueFish(blueSchool[i]);
     }
 
-
+// loop in order to call specific pink fish for our next different functions
     for (let i = 0;  i < pinkSchool.length; i++){
         movePinkFish(pinkSchool[i]);
         displayPinkFish(pinkSchool[i]);
-        //killBlueFish(pinkSchool[i]);
+        killBlueFish(pinkSchool[i]);
     }
  }
 
+// Last state of our program = all the blue fish had been killed by the pink fish
 function end(){
     background(0);
 
@@ -141,6 +149,7 @@ function end(){
 }
 
 function moveBlueFish(blueFish, pinkFish) {
+    // These bluefish will change their position randomly in the aquarium
     let change = random(0, 1);
     if (change < 0.05) {
         blueFish.vx = random(-blueFish.speed, blueFish.speed);
@@ -151,7 +160,7 @@ function moveBlueFish(blueFish, pinkFish) {
     blueFish.x = constrain(blueFish.x, 0, width);
     blueFish.y = constrain(blueFish.y, 0, height);
 
-
+    // Constrain the maximum and the minimum speed of the blueFish in the aquarium
     blueFish.vx += blueFish.ax;
     blueFish.vx = constrain(blueFish.vx, -blueFish.maxSpeed, blueFish.maxSpeed);
     blueFish.vy += blueFish.ay;
@@ -164,7 +173,7 @@ function moveBlueFish(blueFish, pinkFish) {
 
    
 }
-
+// Display tiny blueFish and added the condition if with if the blueFish display is true then we will be able to display the fish in the aquarium
 function displayBlueFish(blueFish) {
     if (blueFish.display = true){
     push();
@@ -177,6 +186,8 @@ function displayBlueFish(blueFish) {
 
 
 function movePinkFish(pinkFish) {
+
+    // These pink fish will change their position randomly in the aquarium 
     let change = random(0, 1);
     if (change < 0.05) {
         pinkFish.vx = random(-pinkFish.speed, pinkFish.speed);
@@ -193,6 +204,7 @@ function movePinkFish(pinkFish) {
     pinkFish.y = constrain(pinkFish.y, 0, height);
 }
 
+// Massive pink fish are being displayed in the aquarium
 function displayPinkFish(pinkFish){
     push();
     fill(100, 0, 100);
@@ -201,6 +213,7 @@ function displayPinkFish(pinkFish){
     pop();
     }
 
+// While calling the pinkFish array, this pinkSchool will allows me to kill specific fish from the blueFish array
 function killBlueFish(pinkSchool, blueFish){
     for (let i = 0;  i < pinkSchool.length; i++){
         let d = dist(pinkFish.x, pinkFish.y, blueFish.x, blueFish.y);
@@ -210,6 +223,7 @@ function killBlueFish(pinkSchool, blueFish){
     }
 }
 
+// Check if there are no blueFish left after the pinkFish have killed them all
 function checkNoBlueFish(blueFish){
     if(blueFish.display = false){
         state = 'end';
