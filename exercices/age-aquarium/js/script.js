@@ -172,7 +172,7 @@ function movePinkFish(pinkFish) {
     pinkFish.y = constrain(pinkFish.y, 0, height);
 }
 
-function displayPinkFish() {
+function displayPinkFish(pinkFish) {
     push();
     fill(100, 0, 0);
     noStroke();
@@ -187,7 +187,7 @@ function displayPinkFish() {
 
 
 // If the user touch the blue fish, the latter would disappear
-function mousePressed() {
+function mousePressed(u) {
     if(mouseX, mouseY < blueFish.size/2){
         displayBlueFish = false;
     }
