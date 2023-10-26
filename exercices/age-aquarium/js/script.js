@@ -221,6 +221,7 @@ function killBlueFish(pinkSchool, blueFish){
            blueFish.display = false;
         }
     }
+    console.log("Is it true?" + blueFish.display)
 }
 
 // Check if there are no blueFish left after the pinkFish have killed them all
