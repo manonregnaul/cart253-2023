@@ -13,9 +13,10 @@
 let blueSchool = [];
 let pinkSchool = [];
 
-let blueSchoolSize = 40;
-let pinkSchoolSize = 40;
+let blueSchoolSize = 200;
+let pinkSchoolSize = 0;
 
+let state = 'title' // Can be : title, simulation, end
 
 
 function preload() {
@@ -41,8 +42,8 @@ function setup() {
 
 function createBlueFish(x, y) {
     let blueFish = {
-        x: 10, 
-        y: 10, 
+        x: 400, 
+        y: 400, 
         size: 10, 
         vx: 0, 
         vy: 0, 
@@ -51,16 +52,16 @@ function createBlueFish(x, y) {
         acceleration: 2,
         maxSpeed:7,
         speed: 2,
-        displayBlueFish: false
+        display: true
     }; 
     return blueFish;
 }
 
 function createPinkFish(x, y) {
     let pinkFish = {
-        x: 10, 
-        y: 10,
-        size: 20, 
+        x: 200, 
+        y: 200,
+        size: 40, 
         vx: 0, 
         vy: 0, 
         speed: 3,
@@ -73,30 +74,68 @@ function createPinkFish(x, y) {
 
 
 function draw() {
-    background(0, 0, 255);
+    background(10, 120, 130, 20);
 
+    if(state === 'title') {
+        title();
+    }
+    else if (state === 'simulation'){
+        simulation();
+    }
+    else if (state === 'end'){
+    }
+}
+
+function title (){
+    background(255);
+
+    push();
+    textSize(60);
+    stroke(0);
+    strokeWeight(2);
+    fill(200, 0, 100);
+    textFont('Nuances');
+    textAlign(CENTER, CENTER);
+    text('Catch the fish!', width/2, height/2);
+    pop();
+
+    push();
+    textSize(20);
+    fill(200, 80, 100);
+    textFont('Nuances');
+    text('Press a key to add a killer pink fish', 100, 200);
+    pop();
+}
+
+function simulation(){
     for (let i = 0;  i < blueSchool.length; i++){
         moveBlueFish(blueSchool[i]);
+        displayBlueFish(blueSchool[i]);
+        checkNoBlueFish(blueSchool[i]);
+        killBlueFish(blueSchool[i]);
     }
 
-    for (let i = 0;  i < blueSchool.length; i++){
-        displayBlueFish(blueSchool[i]);
-    }
 
     for (let i = 0;  i < pinkSchool.length; i++){
         movePinkFish(pinkSchool[i]);
-    }
-
-    for (let i = 0;  i < pinkSchool.length; i++){
         displayPinkFish(pinkSchool[i]);
+        killBlueFish(pinkSchool[i]);
     }
-
-
-
 }
 
+function end(){
+    background(0);
 
-
+    push();
+    textSize(60);
+    stroke(0);
+    strokeWeight(2);
+    fill(200, 0, 100);
+    textFont('Nuances');
+    textAlign(CENTER, CENTER);
+    text('KILLER!', width/2, height/2);
+    pop();  
+}
 
 function moveBlueFish(blueFish, pinkFish) {
     let change = random(0, 1);
@@ -110,28 +149,6 @@ function moveBlueFish(blueFish, pinkFish) {
     blueFish.y = constrain(blueFish.y, 0, height);
 
 
-    // If the blue fish is a a minimum distance of the pink, it would run away (Added some velocity to the movement like Pippin examples)
-
-     
-
-    for (let i = 0;  i < pinkSchool.length; i++){
-    
-        if(pinkSchool[i].x < blueFish.x){
-            blueFish.ax = blueFish.acceleration;
-        }
-        else {
-            blueFish.ax = -blueFish.acceleration;
-        }
-    
-        if(pinkSchool[i].y < blueFish.y){
-            blueFish.ay = blueFish.acceleration;
-        }
-        else {
-            blueFish.ay = -blueFish.acceleration;
-        }
-    }
-
-
     blueFish.vx += blueFish.ax;
     blueFish.vx = constrain(blueFish.vx, -blueFish.maxSpeed, blueFish.maxSpeed);
     blueFish.vy += blueFish.ay;
@@ -141,19 +158,17 @@ function moveBlueFish(blueFish, pinkFish) {
     // Move the fish
     blueFish.x += blueFish.vx;
     blueFish.y += blueFish.vy;
+
+   
 }
 
 function displayBlueFish(blueFish) {
     push();
-    fill(0, 0, 100);
+    fill(52, 112, 224, 88);
     noStroke();
     ellipse(blueFish.x, blueFish.y, blueFish.size);
     pop();
 }
-
-
-
-
 
 
 function movePinkFish(pinkFish) {
@@ -172,26 +187,41 @@ function movePinkFish(pinkFish) {
     pinkFish.y = constrain(pinkFish.y, 0, height);
 }
 
-function displayPinkFish(pinkFish) {
+function displayPinkFish(pinkFish){
     push();
-    fill(100, 0, 0);
+    fill(100, 0, 100);
     noStroke();
     ellipse(pinkFish.x, pinkFish.y, pinkFish.size);
     pop();
 }
 
+function killBlueFish(pinkSchool, blueFish){
+    for (let i = 0;  i < pinkSchool.length; i++){
+        let d = dist(pinkFish.x, pinkFish.y, blueFish.x, blueFish.y);
 
+        if (d < pinkFish.size/2 + blueFish.size/2){
+           blueFish.display === false;
+    }
 
+    }
+}
 
+function checkNoBlueFish(blueFish){
+    if(blueFish.display === false){
+        state = 'end';
+    }
+}
 
+ 
 
 
 // If the user touch the blue fish, the latter would disappear
-function mousePressed(u) {
-    if(mouseX, mouseY < blueFish.size/2){
-        displayBlueFish = false;
+function mousePressed() {
+    if(state === 'title'){
+        state = 'simulation'
     }
 }
+
 
 // When the user is pressing a key, a new pink fish appears
 function keyPressed() {
