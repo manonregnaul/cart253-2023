@@ -76,6 +76,8 @@ function createPinkFish(x, y) {
 function draw() {
     background(10, 120, 130, 20);
 
+
+
     if(state === 'title') {
         title();
     }
@@ -84,6 +86,7 @@ function draw() {
     }
     else if (state === 'end'){
     }
+
 }
 
 function title (){
@@ -119,9 +122,9 @@ function simulation(){
     for (let i = 0;  i < pinkSchool.length; i++){
         movePinkFish(pinkSchool[i]);
         displayPinkFish(pinkSchool[i]);
-        killBlueFish(pinkSchool[i]);
+        //killBlueFish(pinkSchool[i]);
     }
-}
+ }
 
 function end(){
     background(0);
@@ -163,11 +166,13 @@ function moveBlueFish(blueFish, pinkFish) {
 }
 
 function displayBlueFish(blueFish) {
+    if (blueFish.display = true){
     push();
     fill(52, 112, 224, 88);
     noStroke();
     ellipse(blueFish.x, blueFish.y, blueFish.size);
     pop();
+    }
 }
 
 
@@ -177,6 +182,7 @@ function movePinkFish(pinkFish) {
         pinkFish.vx = random(-pinkFish.speed, pinkFish.speed);
         pinkFish.vy = random(-pinkFish.speed, pinkFish.speed);
     }
+
 
     // Move the fish
     pinkFish.x += pinkFish.vx;
@@ -193,21 +199,19 @@ function displayPinkFish(pinkFish){
     noStroke();
     ellipse(pinkFish.x, pinkFish.y, pinkFish.size);
     pop();
-}
+    }
 
 function killBlueFish(pinkSchool, blueFish){
     for (let i = 0;  i < pinkSchool.length; i++){
         let d = dist(pinkFish.x, pinkFish.y, blueFish.x, blueFish.y);
-
         if (d < pinkFish.size/2 + blueFish.size/2){
-           blueFish.display === false;
-    }
-
+           blueFish.display = false;
+        }
     }
 }
 
 function checkNoBlueFish(blueFish){
-    if(blueFish.display === false){
+    if(blueFish.display = false){
         state = 'end';
     }
 }
