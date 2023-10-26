@@ -55,7 +55,7 @@ function createBlueFish(x, y) {
         acceleration: 2,
         maxSpeed:7,
         speed: 2,
-        display: true
+        display: true,
     }; 
     return blueFish;
 }
@@ -117,15 +117,16 @@ function title (){
 // Second state of our program
 function simulation(){
 
+
 // loop in order to call specific blue fish for our next different functions
     for (let i = 0;  i < blueSchool.length; i++){
         moveBlueFish(blueSchool[i]);
         displayBlueFish(blueSchool[i]);
         checkNoBlueFish(blueSchool[i]);
         killBlueFish(blueSchool[i]);
-    }
+  }
 
-// loop in order to call specific pink fish for our next different functions
+// loop in order to call specific pink fish for ozur next different functions
     for (let i = 0;  i < pinkSchool.length; i++){
         movePinkFish(pinkSchool[i]);
         displayPinkFish(pinkSchool[i]);
@@ -175,13 +176,17 @@ function moveBlueFish(blueFish, pinkFish) {
 }
 // Display tiny blueFish and added the condition if with if the blueFish display is true then we will be able to display the fish in the aquarium
 function displayBlueFish(blueFish) {
-    if (blueFish.display = true){
     push();
-    fill(52, 112, 224, 88);
+    if (blueFish.display === true){
+        fill(0, 0, 255);
+    } 
+    else { 
+        fill(255, 0, 0);
+    }
     noStroke();
     ellipse(blueFish.x, blueFish.y, blueFish.size);
     pop();
-    }
+
 }
 
 
@@ -214,14 +219,18 @@ function displayPinkFish(pinkFish){
     }
 
 // While calling the pinkFish array, this pinkSchool will allows me to kill specific fish from the blueFish array
-function killBlueFish(pinkSchool, blueFish){
+function killBlueFish(blueFish){
+    console.log(blueFish.display);
     for (let i = 0;  i < pinkSchool.length; i++){
-        let d = dist(pinkFish.x, pinkFish.y, blueFish.x, blueFish.y);
-        if (d < pinkFish.size/2 + blueFish.size/2){
+        let d = dist(pinkSchool[i].x, pinkSchool[i].y, blueFish.x, blueFish.y);
+        
+        if (d < pinkSchool[i].size/2 + blueFish.size/2){
            blueFish.display = false;
+        } else {
+            blueFish.display = true;
         }
     }
-    console.log("Is it true?" + blueFish.display)
+
 }
 
 // Check if there are no blueFish left after the pinkFish have killed them all
