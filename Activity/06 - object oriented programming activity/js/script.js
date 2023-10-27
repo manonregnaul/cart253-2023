@@ -10,15 +10,14 @@
 
 "use strict";
 
-
-function preload() {
-
-}
+let paddle;
 
 
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    paddle = new Paddle(300, 20);
 
 }
 
@@ -26,5 +25,8 @@ function setup() {
 
 function draw() {
     background(0);
+
+    paddle.move();
+    paddle.display();
 
 }
