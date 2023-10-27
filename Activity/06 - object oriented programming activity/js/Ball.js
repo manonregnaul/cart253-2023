@@ -26,6 +26,10 @@ class Ball {
 
         this.x += this.vx;
         this.y += this.vy;
+
+        if(this.y - this.size/2 > height) {
+            this.active = false;
+        }
     }
 
     bounce(paddle){
