@@ -14,7 +14,7 @@ let blueSchool = [];
 let pinkSchool = [];
 
 // Create the size of this array in order to use the length in our future loops
-let blueSchoolSize = 200;
+let blueSchoolSize = 400;
 let pinkSchoolSize = 0;
 
 let state = 'title' // Can be : title, simulation, end
@@ -77,7 +77,7 @@ function createPinkFish(x, y) {
 
 
 function draw() {
-    background(10, 120, 130, 20);
+    background(80, 90, 230, 20);
 
 
 // Called our state in a specific order
