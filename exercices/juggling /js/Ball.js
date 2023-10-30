@@ -33,7 +33,9 @@ class Ball {
         this.y += this.vy;
 
         if(this.y - this.size/2 > height) {
-            this.active = false;
+            this.ballColor.r(random(0, 20));
+            this.ballColor.g(random (200, 255));
+            this.ballColor.b(random (100, 127));
         }
     }
 
