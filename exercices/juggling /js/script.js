@@ -30,7 +30,7 @@ let numBalls = 3
 let gameOverStartTime;
 let gameLength = 60 * 30;
 
-let state = `game`; // game, win, lose
+let state = `title`; // game, win, lose
 
 
 function setup() {
@@ -68,23 +68,23 @@ function draw() {
 }
 
 function title() {
-    background(255);
+    background(76, 46, 152);
 
     push();
-    textSize(60);
+    textSize(100);
     stroke(0);
     strokeWeight(2);
-    fill(200, 0, 100);
-    textFont('Nuances');
+    fill(0, 255, 127);
+    textFont('Osmose');
     textAlign(CENTER, CENTER);
-    text('Catch the fish!', width/2, height/2);
+    text('Need for Speed', width/2, height/2);
     pop();
 
     push();
     textSize(20);
-    fill(200, 80, 100);
-    textFont('Nuances');
-    text('Press a key to add a killer pink fish', 100, 200);
+    fill(0, 255, 127);
+    textFont('Osmose');
+    text('Press a key to add another ball', 100, 200);
     pop();
 }
     
@@ -135,11 +135,31 @@ function checkNoCircles () {
 }
 
 function win() {
-    displayText('winner');
+  background(0);
+
+  push();
+  textSize(100);
+  stroke(0);
+  strokeWeight(2);
+  fill(0, 255, 127);
+  textFont('Osmose');
+  textAlign(CENTER, CENTER);
+  text('LOOSER!!', width/2, height/2);
+  pop();;;
 }
 
 function lose(){
-    displayText('looser!!!');
+  background(0);
+
+  push();
+    textSize(10);
+    stroke(0);
+    strokeWeight(2);
+    fill(0, 255, 127);
+    textFont('Osmose');
+    textAlign(CENTER, CENTER);
+    text('winner', width/2, height/2);
+    pop();;
 }
 
 
