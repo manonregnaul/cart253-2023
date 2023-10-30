@@ -37,7 +37,6 @@ class Ball {
         }
     }
 
-
     bounce(paddle){
         if (this.x > paddle.x - paddle.width/2 &&
         this.x < paddle.x + paddle.width/2 &&
@@ -48,8 +47,16 @@ class Ball {
         }
     }
 
-
-
+    increaseSpeed(paddle){
+        if (this.x > paddle.x - paddle.width/2 &&
+        this.x < paddle.x + paddle.width/2 &&
+        this.y + this.size/2 > paddle.y - paddle.height/2 &&
+        this.y - this.size/2 < paddle.y + paddle.height/2) {
+            this.vy = - this.vy;
+            this.ay = 2;
+        }
+    }
+    
     display(){
         push();
         //fill(this.ballColor.r, this.ballColor.g, this.ballColor.b);

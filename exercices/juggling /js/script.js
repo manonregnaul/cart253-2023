@@ -131,8 +131,15 @@ function mousePressed() {
 }
 
 function checkNoCircles () {
+    for (let i = 0; i < balls.length; i++) { 
+    let ball = balls[i];
 
-}
+      if (ball.active= false){
+      state = 'lose'
+      }
+    }
+  }
+
 
 function win() {
   background(0);
@@ -145,7 +152,7 @@ function win() {
   textFont('Osmose');
   textAlign(CENTER, CENTER);
   text('LOOSER!!', width/2, height/2);
-  pop();;;
+  pop();
 }
 
 function lose(){
