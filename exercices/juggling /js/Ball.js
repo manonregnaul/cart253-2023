@@ -9,6 +9,11 @@ class Ball {
         this.ax = 0;
         this.ay = 0;
         this.maxSpeed = 10;
+        this.ballColor = {
+            r: 0, 
+            g: 255, 
+            b: 127
+        }
         this.active = true;
 
     }
@@ -42,6 +47,14 @@ class Ball {
         }
     }
 
+    changeColor(paddle){
+        if (this.x > paddle.x - paddle.width/2 &&
+        this.x < paddle.x + paddle.width/2 &&
+        this.y + this.size/2 > paddle.y - paddle.height/2 &&
+        this.y - this.size/2 < paddle.y + paddle.height/2) {
+            this.
+        }
+    }
     display(){
         push();
         fill(0, 255, 127);
