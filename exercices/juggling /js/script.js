@@ -66,6 +66,27 @@ function draw() {
       }
 
 }
+
+function title() {
+    background(255);
+
+    push();
+    textSize(60);
+    stroke(0);
+    strokeWeight(2);
+    fill(200, 0, 100);
+    textFont('Nuances');
+    textAlign(CENTER, CENTER);
+    text('Catch the fish!', width/2, height/2);
+    pop();
+
+    push();
+    textSize(20);
+    fill(200, 80, 100);
+    textFont('Nuances');
+    text('Press a key to add a killer pink fish', 100, 200);
+    pop();
+}
     
 function game() {
     if (frameCount - gameOverStartTime >= gameLength) {
@@ -96,9 +117,8 @@ function gameOver() {
   }
 
 
-function title() {
-    displayText(`title`);
-  }
+
+
 
 function mousePressed() {
     if (state === 'title') {
@@ -122,11 +142,3 @@ function lose(){
 }
 
 
-function displayText(message) {
-    push();
-    fill(255);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text(message, width / 2, height / 2);
-    pop();
-  }
