@@ -33,11 +33,10 @@ class Ball {
         this.y += this.vy;
 
         if(this.y - this.size/2 > height) {
-            this.ballColor.r(random(0, 20));
-            this.ballColor.g(random (200, 255));
-            this.ballColor.b(random (100, 127));
+            this.active = false;
         }
     }
+
 
     bounce(paddle){
         if (this.x > paddle.x - paddle.width/2 &&
@@ -49,14 +48,7 @@ class Ball {
         }
     }
 
-    changeColor(paddle){
-        if (this.x > paddle.x - paddle.width/2 &&
-        this.x < paddle.x + paddle.width/2 &&
-        this.y + this.size/2 > paddle.y - paddle.height/2 &&
-        this.y - this.size/2 < paddle.y + paddle.height/2) {
-            this.
-        }
-    }
+
     display(){
         push();
         fill(0, 255, 127);
@@ -64,5 +56,17 @@ class Ball {
         ellipse(this.x, this.y, this.size);
         pop();
     }
+
+    changeColor(){ 
+        if (this.x > paddle.x - paddle.width/2 &&
+        this.x < paddle.x + paddle.width/2 &&
+        this.y + this.size/2 > paddle.y - paddle.height/2 &&
+        this.y - this.size/2 < paddle.y + paddle.height/2) {
+        this.ballColor.r(random(0, 20));
+        this.ballColor.g(random (200, 255));
+        this.ballColor.b(random (100, 127));
+        }
+    }
+
 
 }
