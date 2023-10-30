@@ -102,6 +102,7 @@ function game() {
         ball.gravity(gravityForce);
         ball.move();
         ball.bounce(paddle);
+        ball.changeColor(paddle);
         ball.display();
         }
     }

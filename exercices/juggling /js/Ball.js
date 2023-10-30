@@ -10,9 +10,9 @@ class Ball {
         this.ay = 0;
         this.maxSpeed = 10;
         this.ballColor = {
-            r: 0, 
-            g: 255, 
-            b: 127
+            r: random(0, 50), 
+            g: random (100, 255), 
+            b: random (0, 127)
         }
         this.active = true;
 
@@ -49,24 +49,28 @@ class Ball {
     }
 
 
+
     display(){
         push();
-        fill(0, 255, 127);
+        //fill(this.ballColor.r, this.ballColor.g, this.ballColor.b);
         stroke(0);
         ellipse(this.x, this.y, this.size);
         pop();
     }
 
-    changeColor(){ 
+    changeColor(paddle){ 
         if (this.x > paddle.x - paddle.width/2 &&
         this.x < paddle.x + paddle.width/2 &&
         this.y + this.size/2 > paddle.y - paddle.height/2 &&
         this.y - this.size/2 < paddle.y + paddle.height/2) {
-        this.ballColor.r(random(0, 20));
-        this.ballColor.g(random (200, 255));
-        this.ballColor.b(random (100, 127));
+        fill(255, 0, 0);
         }
+        else {
+            fill(this.ballColor.r, this.ballColor.g, this.ballColor.b) 
+        }
+        
     }
+
 
 
 }
