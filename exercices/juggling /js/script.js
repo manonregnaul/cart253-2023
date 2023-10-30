@@ -27,8 +27,8 @@ let paddle;
 let balls = [];
 let numBalls = 3
 
-let gameOverTimer = 0;
-let gameLenght = 60 * 30;
+let gameOverStartTime;
+let gameLength = 60 * 30;
 
 let state = `game`; // game, win, lose
 
@@ -68,11 +68,9 @@ function draw() {
 }
     
 function game() {
-    gameOverTimer++;
-
-    if (gameOverTimer >= gameLength) {
-     gameOver();
-    }
+    if (frameCount - gameOverStartTime >= gameLength) {
+        gameOver();
+      }
 
     paddle.move();
     paddle.display();
