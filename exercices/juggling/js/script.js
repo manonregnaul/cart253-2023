@@ -24,23 +24,22 @@ let gravityForce = 0.0035;
 
 let paddle;
 
+// Array to store the balls 
 let balls = [];
 let numBalls = 30
-
-
 let gameLength = 60 * 10;
-
-
 let state = `title`; // game, win, lose
 
 
 
 
+// setup() creates the canvas, called the Paddle's and the balls in our game 
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
     paddle = new Paddle(300, 20);
 
+    // Create our balls by counting up to the number of the balls and pushing them in the array 
     for (let i = 0; i < numBalls; i++) {
         let x = random(0, width);
         let y = random(-400, - 100);
@@ -55,6 +54,7 @@ function setup() {
 function draw() {
     background(76, 46, 152);
 
+    // Call the differents state of our game 
     if (state === `title`) {
         title();
       }
@@ -70,6 +70,7 @@ function draw() {
 
 }
 
+// Add a first state for the beggigining of our game: the Title state 
 function title() {
     background(76, 46, 152);
 
@@ -90,13 +91,17 @@ function title() {
     text('Press a key to add another ball', 100, 200);
     pop();
 }
-    
+ 
+
+// Called our function in order to simulate our game
 function game() {
 
+  // Display the paddle thank to the paddle class and make the paddle decrease during the game in order to not be able for the ball the touch the paddle anymore
     paddle.move();
     paddle.display();
-    paddle.decrease
+    paddle.decrease();
 
+     // Loop through all the balls in the array and display them for the balls, the move and bounce on the paddle nicely with a velocity 
     for (let i = 0; i < balls.length; i++) { 
         let ball = balls[i];
         if (ball.active) {
@@ -109,7 +114,7 @@ function game() {
     }
 }
 
-
+// Trying to manipulate my differents ending state, but it doesn't work...
 function gameOver() {
   // Check if there are 0 circles left
   if (balls.length === 20) {
@@ -126,7 +131,7 @@ function gameOver() {
 
 
 
-
+// Function that allows us to start the game 
 function mousePressed() {
   if (state === `title`) {
     setTimeout(gameOver, gameLength);
@@ -135,7 +140,7 @@ function mousePressed() {
 }
 
 
-
+// Function that tells us if there is still are ball in our canvas, if not we would change our state to the lose one 
 function checkNoBalls () {
     for (let i = 0; i < balls.length; i++) { 
     let ball = balls[i];

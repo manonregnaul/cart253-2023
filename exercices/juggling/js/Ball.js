@@ -1,6 +1,8 @@
 class Ball {
 
+    // The constructor() sets up the balls's properties
     constructor(x, y){
+        // Position and size information
         this.x = x;
         this.y = y;
         this.size = 40;
@@ -9,6 +11,7 @@ class Ball {
         this.ax = 0;
         this.ay = 0;
         this.maxSpeed = 8;
+        // Color information
         this.ballColor = {
             r: 0, 
             g: 255, 
@@ -57,9 +60,9 @@ class Ball {
         }
     }
     
+     // Displays the ball on the canvas
     display(){
         push();
-        //fill(this.ballColor.r, this.ballColor.g, this.ballColor.b);
         stroke(0);
         ellipse(this.x, this.y, this.size);
         pop();
