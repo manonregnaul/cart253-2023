@@ -128,7 +128,6 @@ function gameOver() {
 function mousePressed() {
     if (state === 'title') {
       gameOverStartTime = frameCount;
-      newCircleStartTime = frameCount;
         state = 'game';
     }
     else if (state === 'game') {
