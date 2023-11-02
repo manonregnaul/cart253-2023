@@ -25,12 +25,17 @@ let gravityForce = 0.0025;
 let paddle;
 
 let balls = [];
-let numBalls = 50
+let numBalls = 30
 
-let gameOverStartTime;
-let gameLength = 60 * 30;
+
+let gameLength = 60 * 10;
+let newBallTimer;
+let newBallDelay = 60 * 7;
+
 
 let state = `title`; // game, win, lose
+
+
 
 
 function setup() {
@@ -89,9 +94,6 @@ function title() {
 }
     
 function game() {
-    if (frameCount - gameOverStartTime >= gameLength) {
-        gameOver();
-      }
 
     paddle.move();
     paddle.display();
@@ -108,17 +110,18 @@ function game() {
     }
 }
 
-function gameOver() {
 
-  for (let i = 0; i < balls.length; i++) { 
-    let ball = balls[i];
-    if (ball.active = false) {
-      state = `lose`;
-    }
-    else {
-      state = `win`;
-    }
+function gameOver() {
+  // Check if there are 0 circles left
+  if (balls.length === 0) {
+    // if there are no circles left, we win
+    state = `win`;
   }
+  else {
+    // Otherwise they lost
+    state = `lose`;
+  }
+  clearTimeout(newBallTimer);
 }
 
 
@@ -126,20 +129,20 @@ function gameOver() {
 
 
 function mousePressed() {
-    if (state === 'title') {
-      gameOverStartTime = frameCount;
-        state = 'game';
-    }
-    else if (state === 'game') {
-        checkNoCircles();
-    }
+  if (state === `title`) {
+    setTimeout(gameOver, gameLength);
+    newBallTimer = setTimeout(game, newBallDelay);
+    state = `game`;
+  }
 }
 
-function checkNoCircles () {
+
+
+function checkNoBalls () {
     for (let i = 0; i < balls.length; i++) { 
     let ball = balls[i];
 
-      if (ball.active= false){
+      if (ball.active = false){
       state = 'lose'
       }
     }

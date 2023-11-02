@@ -11,6 +11,12 @@ class Paddle {
         this.x = mouseX; 
     }
 
+    decrease(paddle){
+        let decreasing = random(0, 0.1);
+        this.size = this.size - decreasing;
+        
+    }
+
     display(){
         push();
         fill(200);
@@ -19,4 +25,6 @@ class Paddle {
         rect(this.x, this.y, this.width, this.height);
         pop();
     }
+
+
 }
