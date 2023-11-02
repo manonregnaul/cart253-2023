@@ -20,7 +20,7 @@
 "use strict";
 
 
-let gravityForce = 0.0035;
+let gravityForce = 0.0025;
 
 let paddle;
 

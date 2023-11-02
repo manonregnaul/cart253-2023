@@ -10,7 +10,7 @@ class Ball {
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
-        this.maxSpeed = 8;
+        this.maxSpeed = 11;
         // Color information
         this.ballColor = {
             r: 0, 
@@ -68,6 +68,7 @@ class Ball {
         pop();
     }
 
+    // Method that make the balls turn red when they hit the paddle 
     changeColor(paddle){ 
         if (this.x > paddle.x - paddle.width/2 &&
         this.x < paddle.x + paddle.width/2 &&
