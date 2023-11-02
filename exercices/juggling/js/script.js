@@ -20,7 +20,7 @@
 "use strict";
 
 
-let gravityForce = 0.0025;
+let gravityForce = 0.0035;
 
 let paddle;
 
@@ -95,6 +95,7 @@ function game() {
 
     paddle.move();
     paddle.display();
+    paddle.decrease
 
     for (let i = 0; i < balls.length; i++) { 
         let ball = balls[i];
