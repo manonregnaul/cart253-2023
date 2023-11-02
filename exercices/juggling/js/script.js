@@ -29,8 +29,6 @@ let numBalls = 30
 
 
 let gameLength = 60 * 10;
-let newBallTimer;
-let newBallDelay = 60 * 7;
 
 
 let state = `title`; // game, win, lose
@@ -113,16 +111,16 @@ function game() {
 
 function gameOver() {
   // Check if there are 0 circles left
-  if (balls.length === 0) {
+  if (balls.length === 20) {
     // if there are no circles left, we win
     state = `win`;
   }
-  else {
+  else if (balls.length === 0){
     // Otherwise they lost
     state = `lose`;
   }
-  clearTimeout(newBallTimer);
 }
+
 
 
 
@@ -131,7 +129,6 @@ function gameOver() {
 function mousePressed() {
   if (state === `title`) {
     setTimeout(gameOver, gameLength);
-    newBallTimer = setTimeout(game, newBallDelay);
     state = `game`;
   }
 }
