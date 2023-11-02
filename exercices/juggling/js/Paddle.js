@@ -10,17 +10,21 @@ class Paddle {
         this.alive = true 
     }
 
+
+    decrease(){
+        let decreasing = random(0, 0.8);
+        this.width = this.width - decreasing;
+        //this.height = this.height - decreasing;
+       // if (this.width <= 0) {
+          //  this.alive = false;   
+    }
+
+
     move() {
         this.x = mouseX; 
     }
 
-    decrease(){
-        let decreasing = random(0, 0.5);
-        this.size = this.size - decreasing;
-        if ( this.size <= 0) {
-            this.alive = false;   
-    }
-}
+
 
     display() {
         push();

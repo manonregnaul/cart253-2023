@@ -97,9 +97,11 @@ function title() {
 function game() {
 
   // Display the paddle thank to the paddle class and make the paddle decrease during the game in order to not be able for the ball the touch the paddle anymore
+    
+    paddle.decrease();
     paddle.move();
     paddle.display();
-    paddle.decrease();
+   
 
      // Loop through all the balls in the array and display them for the balls, the move and bounce on the paddle nicely with a velocity 
     for (let i = 0; i < balls.length; i++) { 
