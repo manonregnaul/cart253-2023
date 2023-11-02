@@ -8,11 +8,11 @@ class Ball {
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
-        this.maxSpeed = 20;
+        this.maxSpeed = 8;
         this.ballColor = {
-            r: random(0, 50), 
-            g: random (100, 255), 
-            b: random (0, 127)
+            r: 0, 
+            g: 255, 
+            b: 127
         }
         this.active = true;
 
