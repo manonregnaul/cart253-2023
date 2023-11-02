@@ -8,7 +8,7 @@ class Ball {
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
-        this.maxSpeed = 10;
+        this.maxSpeed = 20;
         this.ballColor = {
             r: random(0, 50), 
             g: random (100, 255), 
@@ -53,7 +53,7 @@ class Ball {
         this.y + this.size/2 > paddle.y - paddle.height/2 &&
         this.y - this.size/2 < paddle.y + paddle.height/2) {
             this.vy = - this.vy;
-            this.ay = 2;
+            this.ay += 2;
         }
     }
     

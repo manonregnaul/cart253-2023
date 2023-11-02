@@ -25,7 +25,7 @@ let gravityForce = 0.0025;
 let paddle;
 
 let balls = [];
-let numBalls = 3
+let numBalls = 50
 
 let gameOverStartTime;
 let gameLength = 60 * 30;
@@ -109,13 +109,17 @@ function game() {
 }
 
 function gameOver() {
-    if (circles.length === 0) {
+
+  for (let i = 0; i < balls.length; i++) { 
+    let ball = balls[i];
+    if (ball.active = false) {
       state = `lose`;
     }
     else {
       state = `win`;
     }
   }
+}
 
 
 
