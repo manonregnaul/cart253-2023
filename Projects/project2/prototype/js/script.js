@@ -1,9 +1,8 @@
 /**
- * Title of Project
- * Author Name
+ * Project 2 prototype: Visual Experimentation
+ * Manon Regnault
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * 
  */
 
 "use strict";
