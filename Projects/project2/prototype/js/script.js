@@ -7,19 +7,19 @@
 
 "use strict";
 
-/**
- * Description of preload
-*/
-function preload() {
+// Created variable for my first state of my program 
+let moiImage;
 
+// Created variables for my second state of my program
+
+function preload() {
+    moiImage = loadImage("assets/images/moi.png");
 }
 
 
-/**
- * Description of setup
-*/
-function setup() {
 
+function setup() {
+    createCanvas(windowWidth, windowHeight);
 }
 
 
@@ -27,5 +27,9 @@ function setup() {
  * Description of draw()
 */
 function draw() {
+    background(238, 130, 238);
 
+    image(moiImage, windowWidth/1.3, 60, 400, 1200);
+
+    
 }
