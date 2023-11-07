@@ -9,8 +9,26 @@
 
 let state = 'title' // Can also be firstPart, secondPart, thirdPart
 
+// 2 differents shades for the background
+let pinkShade = {
+    r: 238, 
+    g: 130,
+    b: 238
+}
+
+let purpleShade = {
+    r: 116, 
+    g: 31, 
+    b: 56
+}
+
 // Created variable for my first state of my program 
-let moiImage;
+let moiImage = {
+    x: 330,
+    y: 40,
+    width: 180,
+    height: 620
+}
 
 // Created variables for my second state of my program
 let bereniceSourireImage;
@@ -43,7 +61,7 @@ function preload() {
 
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(500, 500);
 }
 
 
@@ -65,23 +83,31 @@ function draw() {
 function title() {
     
 
-    background(238, 130, 238);
+    background(pinkShade.r, pinkShade.g, pinkShade.b);
 
     push();
-    textSize(70);
+    textSize(20);
     noStroke();
-    fill(116, 31, 56);
+    fill(purpleShade.r, purpleShade.g, purpleShade.b);
     textFont('BN BOOP');
     textAlign(CENTER, CENTER);
-    text('welcome to my universe', width/2.4, height/2);
+    text('welcome to my universe', 200, height/2);
     pop();
 
-    image(moiImage, windowWidth/1.3, 60, 400, 1200);
+    image(moiImage, moiImage.x, moiImage.y, 180, 620);
 }
 
 function firstPart() {
-    background(116, 31, 56);
+    background(purpleShade.r, purpleShade.g, purpleShade.b);
 
+    push();
+    textSize(15);
+    noStroke();
+    fill(pinkShade.r, pinkShade.g, pinkShade.b);
+    textFont('BN BOOP');
+    textAlign(CENTER, CENTER);
+    text('next', 460, 480);
+    pop();
 
 }
 
@@ -90,7 +116,7 @@ function firstPart() {
 
 
 function mousePressed() {
-    if (mouseX, mouseY = width/2.4, height/2) {
+    if (mouseX, mouseY = moiImage) {
         state = 'firstPart'
     }
   //  else if (mouseX, mouseY) {
