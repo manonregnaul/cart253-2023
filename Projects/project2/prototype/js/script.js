@@ -10,6 +10,8 @@
  * 
  * If I'll be able to make it, the mouse would disperse a sentence on the canvas and you will 
  * be able to see the text more clearly the mouse stops. It is saying "not everything is black and white"
+ * 
+ * For this prototype I was helped  by the coding train code (https://www.youtube.com/watch?v=i2C1hrJMwz0). 
  */
 
 "use strict";
