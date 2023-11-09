@@ -26,8 +26,8 @@ let purpleShade = {
 let moiImage = {
     x: 330,
     y: 40,
-    width: 180,
-    height: 620
+    w: 180,
+    h: 620
 }
 
 // Created variables for my second state of my program
@@ -85,6 +85,8 @@ function title() {
 
     background(pinkShade.r, pinkShade.g, pinkShade.b);
 
+
+
     push();
     textSize(20);
     noStroke();
@@ -94,7 +96,8 @@ function title() {
     text('welcome to my universe', 200, height/2);
     pop();
 
-    image(moiImage, moiImage.x, moiImage.y, 180, 620);
+    //image(moiImage, moiImage.x, moiImage.y, moiImage.w, moiImage.h);
+    image(moiImage, 330, 40, 180, 620);
 }
 
 function firstPart() {
@@ -108,6 +111,8 @@ function firstPart() {
     textAlign(CENTER, CENTER);
     text('next', 460, 480);
     pop();
+
+    image
 
 }
 
