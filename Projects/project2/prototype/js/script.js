@@ -30,19 +30,10 @@ let moiImage = {
     h: 620
 }
 
-// Created variables for my second state of my program
-let bereniceSourireImage;
-let julietteImage;
-let chicagoImage;
-let troisphotosImage;
-let museeImage;
-let metroImage;
-let maximeAlizeeImage;
-let veloAlizeeImage;
+
 
 // Created a class for my black and white images 
-let blackWhiteSchool = [];
-let numblackWhite = 5
+let binaries = [];
 
 
 
@@ -52,14 +43,12 @@ function preload() {
     moiImage = loadImage("assets/images/moi.png");
 
 // Load the images of my first part
-    bereniceSourireImage = loadImage("assets/images/bereniceSourire.png");
-    julietteImage = loadImage("assets/images/juliette.png");
-    chicagoImage = loadImage("assets/images/chicago.png");
-    troisphotosImage = loadImage("assets/images/troisphotos.png");
-    museeImage = loadImage("assets/images/musee.png");
-    metroImage = loadImage("assets/images/metro.png");
-    maximeAlizeeImage = loadImage("assets/images/maximeAlizee.png");
-    veloAlizeeImage = loadImage("assets/images/veloAlizee.png");
+for (let i = 0; i < 8; i++) {
+    binaries[i] = loadImage("assets/images/binaries/binary" + i + ".png");
+}
+
+    binary1 = loadImage("assets/images/bereniceSourire.png");
+    
 
 }
 
@@ -125,8 +114,10 @@ function firstPart() {
     text('next', 460, 480);
     pop();
 
-    image
-
+    for (let i = 0; i < binaries.length; i++) {
+        binaries[i].move();
+        binaries[i].show();
+    }
 }
 
 
@@ -137,7 +128,7 @@ function mousePressed() {
     if (mouseX, mouseY = moiImage) {
         state = 'firstPart'
     }
-  //  else if (mouseX, mouseY) {
-   //     state = 'secondPart'
-    //}
+
+
+
 }
