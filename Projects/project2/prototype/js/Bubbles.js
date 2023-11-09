@@ -1,6 +1,6 @@
 class Bubbles {
 
-    constructor(x, y, r, img) {
+    constructor(x, y, r) {
         this.x = x;
         this.y = y;
         this. r = r;

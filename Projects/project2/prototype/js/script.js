@@ -54,12 +54,15 @@ function preload() {
 // Load the image of my title state
     moiImage = loadImage("assets/images/moi.png");
 
+    //binary0 = loadImage("assets/images/binaries/binary0.png");
+
 // Load the images of my first part
-for (let i = 0; i < 8; i++) {
-    binaries[i] = loadImage("assets/images/binaries/binary" + i + ".png");
-}
+  // for (let i = 0; i < 8; i++) {
+   // binaries[i] = loadImage(`assets/images/binaries/binary${i}.jpg`);
+
 
 }
+
 
 
 
@@ -70,7 +73,7 @@ function setup() {
         let x = random(10, 490);
         let y = random(0, 100);
         let r = random (60, 100);
-        let b = new Bubble(x, y, r);
+        let b = new Bubbles(x, y, r);
         bubbles.push(b); 
     }
 }
@@ -129,11 +132,12 @@ function firstPart() {
     text('not everything is black or white', mouseX, mouseY);
     pop();
 
+    image(binary0, mouseX, mouseY);
 
-    for (let i = 0; i < bubbles.length; i++) {
-        bubbles[i].move();
-        bubbles[i].show();
-    }
+   // for (let i = 0; i < bubbles.length; i++) {
+  //      bubbles[i].move();
+   //     bubbles[i].show();
+  //  }
 }
 
 
