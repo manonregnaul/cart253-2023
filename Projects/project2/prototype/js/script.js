@@ -41,6 +41,12 @@ let moiImage = {
     h: 620
 }
 
+let circle = {
+    x: 340,
+    y: 310,
+    size: 30, 
+}
+
 
 
 // Created a class for my black and white images 
@@ -54,13 +60,21 @@ function preload() {
 // Load the image of my title state
     moiImage = loadImage("assets/images/moi.png");
 
-    //binary0 = loadImage("assets/images/binaries/binary0.png");
+   // binary0 = loadImage("assets/images/binary0.png");
+   // binary1 = loadImage("assets/images/binary1.png");
+   //binary2 = loadImage("assets/images/binary2.png");
+   // binary3 = loadImage("assets/images/binary3.png");
+   // binary4 = loadImage("assets/images/binary4.png");
+//binary5 = loadImage("assets/images/binary5.png");
+   // binary6 = loadImage("assets/images/binary6.png");
+   // binary7 = loadImage("assets/images/binary7.png");
+
+
 
 // Load the images of my first part
-  // for (let i = 0; i < 8; i++) {
-   // binaries[i] = loadImage(`assets/images/binaries/binary${i}.jpg`);
-
-
+    for (let i = 0; i < 8; i++) {
+        binaries[i] = loadImage("assets/images/binary" + i + ".png");
+ }
 }
 
 
@@ -69,11 +83,16 @@ function preload() {
 function setup() {
     createCanvas(500, 500);
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 18; i++) {
         let x = random(10, 490);
         let y = random(0, 100);
-        let r = random (60, 100);
-        let b = new Bubbles(x, y, r);
+        let r = random(10, 300);
+        let vx = random (0.1, 1);
+        let vy = random (0.1, 1);
+        let maxSpeed = 2;
+        let speed = 1;
+
+        let b = new Bubbles(x, y, r, vx, vy, maxSpeed, speed);
         bubbles.push(b); 
     }
 }
@@ -98,6 +117,7 @@ function title() {
     
     background(pinkShade.r, pinkShade.g, pinkShade.b);
 
+    // Display my title
     push();
     textSize(20);
     noStroke();
@@ -107,37 +127,53 @@ function title() {
     text('welcome to my universe', 200, height/2);
     pop();
 
+    // Display a clicking button to clik on it
+    push();
+    ellipse(CENTER);
+    strokeWeight(random(30,50));
+    stroke(255, 34, 100, 30);
+    ellipse(circle.x, circle.y, circle.size);
+    fill(200, 0, 0);
+    pop();
+
     //image(moiImage, moiImage.x, moiImage.y, moiImage.w, moiImage.h);
     image(moiImage, 330, 40, 180, 620);
 }
 
 function firstPart() {
-    background(purpleShade.r, purpleShade.g, purpleShade.b);
+    background(purpleShade.r, purpleShade.g, purpleShade.b, 9);
 
     push();
-    textSize(15);
+    textSize(20);
     noStroke();
     fill(pinkShade.r, pinkShade.g, pinkShade.b);
     textFont('BN BOOP');
     textAlign(CENTER, CENTER);
-    text('next', 460, 480);
+    text('next', 460, 30);
     pop();
 
-    push();
-    textSize(7);
-    noStroke();
-    fill(255);
-    textFont('JetBrains Mono');
-    textAlign(CENTER, CENTER);
-    text('not everything is black or white', mouseX, mouseY);
-    pop();
+ 
 
-    image(binary0, mouseX, mouseY);
+   // image(binary0, mouseX, mouseY);
 
-   // for (let i = 0; i < bubbles.length; i++) {
-  //      bubbles[i].move();
-   //     bubbles[i].show();
-  //  }
+   for (let i = 0; i < bubbles.length; i++) {
+        bubbles[i].move();
+        bubbles[i].display();
+   }
+
+   push();
+   //background(purpleShade.r, purpleShade.g, purpleShade.b, 0);
+   textSize(13);
+   stroke(255);
+   noCursor();
+   fill(0)
+
+   //fill(pinkShade.r, pinkShade.g, pinkShade.b, );
+   textFont('JetBrains Mono');
+   textAlign(CENTER, CENTER);
+   text('not everything is black or white', mouseX, mouseY);
+   pop();
+ 
 }
 
 
@@ -145,7 +181,9 @@ function firstPart() {
 
 
 function mousePressed() {
-    if (mouseX, mouseY = moiImage) {
+   
+    let d = dist(mouseX, mouseY, circle.x, circle.y);
+    if (d < circle.size) {
         state = 'firstPart'
     }
 
