@@ -40,6 +40,11 @@ let metroImage;
 let maximeAlizeeImage;
 let veloAlizeeImage;
 
+// Created a class for my black and white images 
+let blackWhiteSchool = [];
+let numblackWhite = 5
+
+
 
 function preload() {
 
@@ -62,6 +67,14 @@ function preload() {
 
 function setup() {
     createCanvas(500, 500);
+
+    for (let i = 0; i < 8; i++) {
+        let x = random(10, 490);
+        let y = random(0, 100);
+        let r = random (60, 100);
+        let binary = new Binaries(x, y, r);
+        Binaries.push(binary); 
+    }
 }
 
 
