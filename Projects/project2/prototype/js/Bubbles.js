@@ -1,4 +1,4 @@
-class Binaries {
+class Bubbles {
 
     constructor(x, y, r, img) {
         this.x = x;
@@ -12,6 +12,17 @@ class Binaries {
             this.binary = random(binaries);
         }
     }
+    clicked(px, py) {
+    
+        if (
+          px > this.x &&
+          px < this.x + this.r &&
+          py > this.y &&
+          py < this.y + this.r
+        ) {
+          this.binary = random(binaries);
+        }
+      }
 
     move() {
         this.y = this.y + 3;

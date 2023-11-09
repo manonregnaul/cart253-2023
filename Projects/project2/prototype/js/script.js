@@ -2,10 +2,19 @@
  * Project 2 prototype: Visual Experimentation
  * Manon Regnault
  * 
+ * This prototype consist in exploring my abilities in using images to my program. 
+ * My first consiste in the title. By clicking in the title, the user should be redirected 
+ * throught a new page exploring moving black and whites images that I took. The user can 
+ * click on the image of his choice in order to change the image. Furthermore, each image would 
+ * slowy fall out of the canvas. 
  * 
+ * If I'll be able to make it, the mouse would disperse a sentence on the canvas and you will 
+ * be able to see the text more clearly the mouse stops. It is saying "not everything is black and white"
  */
 
 "use strict";
+
+
 
 let state = 'title' // Can also be firstPart, secondPart, thirdPart
 
@@ -33,6 +42,7 @@ let moiImage = {
 
 
 // Created a class for my black and white images 
+let bubbles = [];
 let binaries = [];
 
 
@@ -47,9 +57,6 @@ for (let i = 0; i < 8; i++) {
     binaries[i] = loadImage("assets/images/binaries/binary" + i + ".png");
 }
 
-    binary1 = loadImage("assets/images/bereniceSourire.png");
-    
-
 }
 
 
@@ -61,8 +68,8 @@ function setup() {
         let x = random(10, 490);
         let y = random(0, 100);
         let r = random (60, 100);
-        let binary = new Binaries(x, y, r);
-        Binaries.push(binary); 
+        let b = new Bubble(x, y, r);
+        bubbles.push(b); 
     }
 }
 
@@ -84,10 +91,7 @@ function draw() {
 
 function title() {
     
-
     background(pinkShade.r, pinkShade.g, pinkShade.b);
-
-
 
     push();
     textSize(20);
@@ -114,9 +118,19 @@ function firstPart() {
     text('next', 460, 480);
     pop();
 
-    for (let i = 0; i < binaries.length; i++) {
-        binaries[i].move();
-        binaries[i].show();
+    push();
+    textSize(7);
+    noStroke();
+    fill(255);
+    textFont('JetBrains Mono');
+    textAlign(CENTER, CENTER);
+    text('not everything is black or white', mouseX, mouseY);
+    pop();
+
+
+    for (let i = 0; i < bubbles.length; i++) {
+        bubbles[i].move();
+        bubbles[i].show();
     }
 }
 
@@ -129,6 +143,7 @@ function mousePressed() {
         state = 'firstPart'
     }
 
-
-
+    for (let i = 0; i < bubbles.length; i++) {
+        bubbles[i].clicked(mouseX, mouseY);
+    }
 }
