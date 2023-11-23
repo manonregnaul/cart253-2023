@@ -25,8 +25,11 @@ class Bubbles {
           py < this.y + this.r
         ) {
           this.binary = random(binaries);
+          //this.binary = this.binary
         }
       }
+
+    
 
     move() {
        
