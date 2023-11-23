@@ -47,6 +47,13 @@ let circle = {
     size: 30, 
 }
 
+let nextBox = {
+    x: random(450, 500),
+    y: random(0, 100),
+    w: 10,
+    h: 50
+}
+
 
 
 // Created a class for my black and white images 
@@ -75,7 +82,16 @@ function preload() {
     for (let i = 0; i < 8; i++) {
         binaries[i] = loadImage("assets/images/binary" + i + ".png");
  }
+
+// Load the images of my second part 
+    concordian0 = loadImage("assets/images/concordian0.png")
+
+
+
 }
+
+
+
 
 
 
@@ -95,6 +111,8 @@ function setup() {
         let b = new Bubbles(x, y, r, vx, vy, maxSpeed, speed);
         bubbles.push(b); 
     }
+
+    //for (let i)
 }
 
 
@@ -154,7 +172,7 @@ function firstPart() {
 
  
 
-   // image(binary0, mouseX, mouseY);
+
 
    for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].move();
@@ -177,6 +195,36 @@ function firstPart() {
 }
 
 
+function secondPart() {
+    background(pinkShade.r, pinkShade.g, pinkShade.b);
+
+    push();
+    textSize(20);
+    noStroke();
+    fill(purpleShade.r, purpleShade.g, purpleShade.b);
+    textFont('BN BOOP');
+    textAlign(CENTER, CENTER);
+    text('next', 460, 30);
+    pop();
+
+
+
+   push();
+   textSize(13);
+   stroke(255);
+   noCursor();
+   fill(purpleShade.r, purpleShade.g, purpleShade.b);
+   textFont('JetBrains Mono');
+   textAlign(CENTER, CENTER);
+   text('everything is a question of smile', mouseX, mouseY);
+   pop();
+
+   image(concordian0, 330, 40, 180, 620);
+
+
+}
+
+
 
 
 
@@ -189,5 +237,11 @@ function mousePressed() {
 
     for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].clicked(mouseX, mouseY);
+    }
+
+
+    let d2 = dist(mouseX, mouseY, nextBox.x, nextBox.y);
+    if (d2 < nextBox.w, nextBox.h) {
+        state = 'secondPart'
     }
 }
