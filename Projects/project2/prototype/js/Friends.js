@@ -1,9 +1,11 @@
-class Concordians {
+class Friends {
 
     constructor(x, y, r, img) {
         this.x = x;
         this.y = y;
         this. r = r;
+        this.maxSpeed = maxSpeed, 
+        this.speed = this.speed,
         this.concordian = random(concordians);
     }
 
@@ -14,7 +16,9 @@ class Concordians {
     }
 
     move() {
-        this.y = this.y + 3
+
+        this.y = this.y + 3;
+        this.y = this.y - 3;
     }
 
     display() {
