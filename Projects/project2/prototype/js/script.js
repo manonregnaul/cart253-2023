@@ -110,8 +110,9 @@ function setup() {
         bubbles.push(b); 
     }
 
-    //for (let i)
-}
+    kayleMovement = new KayleMovement();
+
+}  
 
 
 /**
