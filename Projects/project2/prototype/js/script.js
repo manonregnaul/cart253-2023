@@ -56,10 +56,13 @@ let nextBox = {
 
 let charlotte; 
 
+let kayleMovement; 
+
 
 // Created a class for my black and white images 
 let bubbles = [];
 let binaries = [];
+
 
 
 
@@ -78,6 +81,8 @@ function preload() {
 
 // Load the images of my second part 
     charlotte = loadImage("assets/images/concordian0.png")
+    kayle = loadImage("assets/images/concordian1.png");
+
 
 
 
