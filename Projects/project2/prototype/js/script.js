@@ -48,12 +48,13 @@ let circle = {
 }
 
 let nextBox = {
-    x: random(450, 500),
-    y: random(0, 100),
+    x: 450,
+    y: 100,
     w: 10,
     h: 50
 }
 
+let charlotte; 
 
 
 // Created a class for my black and white images 
@@ -76,7 +77,7 @@ function preload() {
  }
 
 // Load the images of my second part 
-    concordian0 = loadImage("assets/images/concordian0.png")
+    charlotte = loadImage("assets/images/concordian0.png")
 
 
 
@@ -211,7 +212,7 @@ function secondPart() {
    text('everything is a question of smile', mouseX, mouseY);
    pop();
 
-   image(concordian0, 330, 40, 180, 620);
+   image(charlotte, 330, 40, 180, 620);
 
 
 }
@@ -232,8 +233,13 @@ function mousePressed() {
     }
 
 
-    let d2 = dist(mouseX, mouseY, nextBox.x, nextBox.y);
-    if (d2 < nextBox.w, nextBox.h) {
-        state = 'secondPart'
+    // Check if the mouse is inside the "next" text
+    if (
+        mouseX > 460 - textWidth('next') / 2 &&
+        mouseX < 460 + textWidth('next') / 2 &&
+        mouseY > 15 &&
+        mouseY < 45
+    ) {
+        state = 'secondPart';
     }
 }

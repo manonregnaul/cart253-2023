@@ -7,7 +7,7 @@ class Bubbles {
         this.vx = vx;
         this.vy = vy;
         this.maxSpeed = maxSpeed, 
-        this.speed = this.speed,
+        //this.speed = this.speed,
         this.binary = random(binaries);
     }
 
