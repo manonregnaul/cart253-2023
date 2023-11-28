@@ -67,14 +67,6 @@ function preload() {
 // Load the image of my title state
     moiImage = loadImage("assets/images/moi.png");
 
-   // binary0 = loadImage("assets/images/binary0.png");
-   // binary1 = loadImage("assets/images/binary1.png");
-   //binary2 = loadImage("assets/images/binary2.png");
-   // binary3 = loadImage("assets/images/binary3.png");
-   // binary4 = loadImage("assets/images/binary4.png");
-//binary5 = loadImage("assets/images/binary5.png");
-   // binary6 = loadImage("assets/images/binary6.png");
-   // binary7 = loadImage("assets/images/binary7.png");
 
 
 
