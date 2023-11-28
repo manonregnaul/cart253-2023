@@ -297,7 +297,19 @@ function thirdPart() {
       }
 }
 
-   
+function end() {
+    background(purpleShade.r, purpleShade.g, purpleShade.b);
+
+    push();
+    textSize(20);
+    noStroke();
+    fill(pinkShade.r, pinkShade.g, pinkShade.b);
+    textFont('Nuances');
+    textAlign(CENTER, CENTER);
+    text('THE END', 250, 250);
+    pop();
+
+}
 
 // Help to change state and to clik interact with the differents state.
 function mousePressed() {
