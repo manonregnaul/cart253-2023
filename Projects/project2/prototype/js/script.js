@@ -40,37 +40,39 @@ let moiImage = {
     w: 180,
     h: 620
 }
-
 let circle = {
     x: 340,
     y: 310,
     size: 30, 
 }
 
-
-
-let charlotte; 
-let kayle;
-
-let balls = [];
-
-
 // Created an array for my black and white images 
 let bubbles = [];
 let binaries = [];
 
 
+
+//  Created variables for my second state of my program
+let charlotte; 
+let kayle;
+
 // Created an array for my Kayle and Charlotte images 
 let charlotteImages = [];
 let kayleImages = [];
 
+
+// Created variables for my third state of my program 
+    let balls = [];
+
+
+
+
+
+// Load all the images needed for my program 
 function preload() {
 
 // Load the image of my title state
     moiImage = loadImage("assets/images/moi.png");
-
-
-
 
 // Load the images of my first part
     for (let i = 0; i < 8; i++) {
@@ -80,10 +82,6 @@ function preload() {
 // Load the images of my second part 
     charlotte = loadImage("assets/images/concordian0.png")
     kayle = loadImage("assets/images/concordian1.png");
-
-
-   
-
 
 }
 
@@ -123,12 +121,9 @@ function setup() {
 
 
 
-/**
- * Description of draw()
-*/
+// We are calling all the different in the right order
 function draw() {
 
-    // Called our state in a specific order
     if(state === 'title') {
         title();
     }
@@ -141,12 +136,18 @@ function draw() {
     else if (state === 'thirdPart'){
         thirdPart();
     }
+    else if (state === 'end') {
+        end();
+    }
 
    
 }
 
+// First state of our program, it allows us to a pink layout with a centered title and in jiggle circle that 
+// invite the user to interact with it. If we clik on it. We could go to the next state.
 function title() {
     
+    // Created a pink background
     background(pinkShade.r, pinkShade.g, pinkShade.b);
 
     // Display my title
@@ -168,11 +169,17 @@ function title() {
     fill(200, 0, 0);
     pop();
 
-    //image(moiImage, moiImage.x, moiImage.y, moiImage.w, moiImage.h);
+    // Display my image for it to no be distorted (will be place a the right of my canvas)
     image(moiImage, 330, 40, 180, 620);
 }
 
+
+// Second state of our program. It allows us to display random black and white images that will slowly move toward the 
+// the bottom of our canvas. If we clicked on a random image, the image will change randomly and indefinitely. 
+// Futhermore, the images are constrain to stay in the canvas. 
 function firstPart() {
+
+    // The alpha for the color of the background allow this nice effect of "print" in the background.
     background(0,0,0, 5);
 
     push();
@@ -295,11 +302,30 @@ function mousePressed() {
 
     if (d < circle.size) {
         state = 'firstPart';
-    } else if (state === 'firstPart' && mouseX > 430 && mouseX < 490 && mouseY > 15 && mouseY < 45) {
+      } else if (state === 'firstPart' && mouseX > 430 && mouseX < 490 && mouseY > 15 && mouseY < 45) {
         state = 'secondPart';
-    } else if (state === 'secondPart' && mouseX > 430 && mouseX < 490 && mouseY > 15 && mouseY < 45) {
+      } else if (state === 'secondPart' && mouseX > 430 && mouseX < 490 && mouseY > 15 && mouseY < 45) {
         state = 'thirdPart';
-    }
+      } else if (state === 'thirdPart') {
+        // Vérifier si le clic est à l'intérieur des limites de l'image
+        if (mouseX > 200 && mouseX < 275 && mouseY > 150 && mouseY < 350) {
+          // Si le clic est sur l'image, passer à l'état de fin
+          state = 'end';
+        } else {
+          // Sinon, créer une nouvelle balle avec des propriétés aléatoires
+          let newBall = new BouncingBall(
+            random(width),
+            random(height),
+            20,
+            random(-2, 2),
+            random(-2, 2)
+          );
+      
+          // Ajouter la nouvelle balle au tableau balls
+          balls.push(newBall);
+        }
+      }
+    
 
     for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].clicked(mouseX, mouseY);
@@ -309,18 +335,5 @@ function mousePressed() {
         ball.clicked(mouseX, mouseY);
       }
 
+ }
 
-    if (state === 'thirdPart') {
-        // Créer une nouvelle balle avec des propriétés aléatoires
-        let newBall = new BouncingBall(
-          random(width),
-          random(height),
-          20,
-          random(-2, 2),
-          random(-2, 2)
-        );
-    
-        // Ajouter la nouvelle balle au tableau balls
-        balls.push(newBall);
-      }
-}
