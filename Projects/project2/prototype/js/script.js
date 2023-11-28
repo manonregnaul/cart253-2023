@@ -52,10 +52,7 @@ let circle = {
 let charlotte; 
 let kayle;
 
-let charlotteMovement;
-let kayleMovement; 
-
-let imageSpacing = 30;
+let balls = [];
 
 
 // Created an array for my black and white images 
@@ -85,6 +82,7 @@ function preload() {
     kayle = loadImage("assets/images/concordian1.png");
 
 
+   
 
 
 }
@@ -111,9 +109,18 @@ function setup() {
         bubbles.push(b); 
     }
 
-    
+    for (let i = 0; i < 5; i++) {
+        let ball = new BouncingBall(
+          random(width),
+          random(height),
+          20,
+          random(-2, 2),
+          random(-2, 2)
+        );
+        balls.push(ball);
+      }
+    }
 
-}  
 
 
 /**
@@ -263,19 +270,21 @@ function thirdPart() {
     background(purpleShade.r, purpleShade.g, purpleShade.b, 9);
 
     push();
-    //background(purpleShade.r, purpleShade.g, purpleShade.b, 0);
     textSize(13);
     stroke(255);
     noCursor();
     fill(0)
- 
-    //fill(pinkShade.r, pinkShade.g, pinkShade.b, );
     textFont('JetBrains Mono');
     textAlign(CENTER, CENTER);
     text('overthinking!', mouseX, mouseY);
     pop();
     
     image(moiImage, 200, 150, 75, 200);
+
+    for (let ball of balls) {
+        ball.move();
+        ball.display();
+      }
 }
 
    
@@ -295,4 +304,23 @@ function mousePressed() {
     for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].clicked(mouseX, mouseY);
     }
+
+    for (let ball of balls) {
+        ball.clicked(mouseX, mouseY);
+      }
+
+
+    if (state === 'thirdPart') {
+        // Créer une nouvelle balle avec des propriétés aléatoires
+        let newBall = new BouncingBall(
+          random(width),
+          random(height),
+          20,
+          random(-2, 2),
+          random(-2, 2)
+        );
+    
+        // Ajouter la nouvelle balle au tableau balls
+        balls.push(newBall);
+      }
 }
