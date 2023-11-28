@@ -1,3 +1,5 @@
+
+
 class Bubbles {
 
     constructor(x, y, r, vx, vy, maxSpeed, speed) {
@@ -11,11 +13,8 @@ class Bubbles {
         this.binary = random(binaries);
     }
 
-   // clicked (px, py) {
-   //     if (px > this.x && px < this.x + this.r && py > this.y && py < this.y + this.r) {
-   //         this.binary = random(binaries);
-   //     }
-   // }
+   
+    
     clicked(px, py) {
     
         if (

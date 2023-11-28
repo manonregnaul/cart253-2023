@@ -55,6 +55,7 @@ let kayle;
 let charlotteMovement;
 let kayleMovement; 
 
+let imageSpacing = 30;
 
 
 // Created an array for my black and white images 
@@ -110,8 +111,7 @@ function setup() {
         bubbles.push(b); 
     }
 
-    charlotteMovement = new CharlotteMovement();
-    kayleMovement = new KayleMovement();
+    
 
 }  
 
@@ -131,6 +131,10 @@ function draw() {
     else if (state === 'secondPart'){
         secondPart();
     }
+    else if (state === 'thirdPart'){
+        thirdPart();
+    }
+
    
 }
 
@@ -162,10 +166,10 @@ function title() {
 }
 
 function firstPart() {
-    background(purpleShade.r, purpleShade.g, purpleShade.b, 9);
+    background(0,0,0, 5);
 
     push();
-    textSize(20);
+    textSize(16);
     noStroke();
     fill(pinkShade.r, pinkShade.g, pinkShade.b);
     textFont('BN BOOP');
@@ -199,12 +203,42 @@ function firstPart() {
 
 
 function secondPart() {
-    background(pinkShade.r, pinkShade.g, pinkShade.b);
+    //background(pinkShade.r, pinkShade.g, pinkShade.b, 10);
+
+    
+
+      // Generate and display Charlotte images
+      for (let i = 0; i < 10; i++) { // Adjust the number of images as needed
+        charlotteImages.push({
+            x: random(width),
+            y: random(height),
+        });
+    }
+
+    // Generate and display Kayle images
+    for (let i = 0; i < 10; i++) { // Adjust the number of images as needed
+        kayleImages.push({
+            x: random(width),
+            y: random(height),
+        });
+    }
+
+    // Display Charlotte images
+    for (let img of charlotteImages) {
+        image(charlotte, img.x, img.y, 60, 60);
+    }
+
+    // Display Kayle images
+    for (let img of kayleImages) {
+        image(kayle, img.x, img.y, 60, 60);
+    }
+
+    background(0, 80);
 
     push();
     textSize(20);
     noStroke();
-    fill(purpleShade.r, purpleShade.g, purpleShade.b);
+    fill(pinkShade.r, pinkShade.g, pinkShade.b);
     textFont('BN BOOP');
     textAlign(CENTER, CENTER);
     text('next', 460, 30);
@@ -213,61 +247,52 @@ function secondPart() {
 
 
    push();
-   textSize(13);
-   stroke(255);
+   textSize(10);
+   noStroke();
    noCursor();
-   fill(purpleShade.r, purpleShade.g, purpleShade.b);
+   fill(255);
    textFont('JetBrains Mono');
    textAlign(CENTER, CENTER);
    text('everything is a question of smile', mouseX, mouseY);
    pop();
 
+}
+
+function thirdPart() {
+
+    background(purpleShade.r, purpleShade.g, purpleShade.b, 9);
+
+    push();
+    //background(purpleShade.r, purpleShade.g, purpleShade.b, 0);
+    textSize(13);
+    stroke(255);
+    noCursor();
+    fill(0)
+ 
+    //fill(pinkShade.r, pinkShade.g, pinkShade.b, );
+    textFont('JetBrains Mono');
+    textAlign(CENTER, CENTER);
+    text('overthinking!', mouseX, mouseY);
+    pop();
+    
+    image(moiImage, 200, 150, 75, 200);
+}
+
    
-    // Move and display Charlotte
-   charlotteMovement.move();
-   charlotteMovement.display();
-
-   // Move and display Kayle
-   kayleMovement.move();
-   kayleMovement.display();
-
-
-}
-
-function centerAllImages() {
-    for (let i = 0; i < bubbles.length; i++) {
-        bubbles[i].center();
-    }
-    charlotteMovement.center();
-    kayleMovement.center();
-}
 
 
 function mousePressed() {
-    
-
     let d = dist(mouseX, mouseY, circle.x, circle.y);
+
     if (d < circle.size) {
-        state = 'firstPart'
+        state = 'firstPart';
+    } else if (state === 'firstPart' && mouseX > 430 && mouseX < 490 && mouseY > 15 && mouseY < 45) {
+        state = 'secondPart';
+    } else if (state === 'secondPart' && mouseX > 430 && mouseX < 490 && mouseY > 15 && mouseY < 45) {
+        state = 'thirdPart';
     }
 
     for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].clicked(mouseX, mouseY);
     }
-
-    //console.log("Mouse X:", mouseX, "Mouse Y:", mouseY);
-    //console.log("Next Box:", nextBox);
-
-    // Check if the mouse is inside the "next" text
-    if (
-        mouseX > 430 &&  // Adjusted x-coordinate based on the width of the text
-        mouseX < 490 &&  // Adjusted x-coordinate based on the width of the text
-        mouseY > 15 &&
-        mouseY < 45
-    ) {
-        state = 'secondPart';
-    }
-
-    // Check if the click movement is on Kayle image
-    kayleMovement.checkClick(mouseX, mouseY);
 }
