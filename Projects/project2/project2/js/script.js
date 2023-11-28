@@ -49,7 +49,6 @@ let bubbles = [];
 let binaries = [];
 
 
-
 //  Created variables for my second state of my program
 let charlotte; 
 let kayle;
@@ -61,8 +60,6 @@ let kayleImages = [];
 
 // Created variables for my third state of my program 
     let balls = [];
-
-
 
 
 
@@ -107,7 +104,7 @@ function setup() {
         let b = new Bubbles(x, y, r, vx, vy, maxSpeed, speed);
         bubbles.push(b); 
     }
-    
+
     // For the third state
     // Loop that will allow to add 10 first different bouncing ball
     // We are calling the BouningBall class to be allowed to communicate information between the script and this class.
@@ -180,7 +177,8 @@ function title() {
 
 // Second state of our program. It allows us to display random black and white images that will slowly move toward the 
 // the bottom of our canvas. If we clicked on a random image, the image will change randomly and indefinitely. 
-// Futhermore, the images are constrain to stay in the canvas. 
+// Futhermore, the images are constrain to stay in the canvas. There is no cursor because the mouse controls a text that will 
+// fade throughout the disposition of the mouse. You can end this state by clicking on the next button 
 function firstPart() {
 
     // The alpha for the color of the background allow this nice effect of "print" in the background.
@@ -220,10 +218,9 @@ function firstPart() {
 }
 
 
+// This state allowed to display a lot of images from kayle and Charlotte on my canvas. There is no cursor because the mouse controls a text that will 
+// fade throughout the disposition of the mouse. You can end this state by clicking on the next button.
 function secondPart() {
-    //background(pinkShade.r, pinkShade.g, pinkShade.b, 10);
-
-    
 
       // Generate and display Charlotte images
       for (let i = 0; i < 10; i++) { // Adjust the number of images as needed
@@ -276,6 +273,8 @@ function secondPart() {
 
 }
 
+// This state allowed to display bouncing red balls that will fade thanks to the alpha of the background. There is no cursor because the mouse controls a text that will 
+// fade throughout the disposition of the mouse. You can end this state by clicking on the my centered image.
 function thirdPart() {
 
     background(purpleShade.r, purpleShade.g, purpleShade.b, 9);
@@ -300,7 +299,7 @@ function thirdPart() {
 
    
 
-
+// Help to change state and to clik interact with the differents state.
 function mousePressed() {
     let d = dist(mouseX, mouseY, circle.x, circle.y);
 
@@ -330,11 +329,12 @@ function mousePressed() {
         }
       }
     
-
+// Allowing us to change the image of the second state bu cliking on a random image 
     for (let i = 0; i < bubbles.length; i++) {
         bubbles[i].clicked(mouseX, mouseY);
     }
 
+// Allowing us to add another bouncing ball
     for (let ball of balls) {
         ball.clicked(mouseX, mouseY);
       }
