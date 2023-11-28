@@ -55,6 +55,7 @@ let nextBox = {
 }
 
 let charlotte; 
+let kayle;
 
 let kayleMovement; 
 
@@ -126,6 +127,9 @@ function draw() {
     }
     else if (state === 'firstPart'){
         firstPart();
+    }
+    else if (state === 'secondPart'){
+        secondPart();
     }
    
 }
@@ -220,6 +224,14 @@ function secondPart() {
 
    image(charlotte, 330, 40, 180, 620);
 
+   image(kayle, width / 2 - 25, height / 2 - 25, 50, 50);
+
+   charlotte.move();
+   charlotte.display();
+
+   kayleMovement.move();
+   kayleMovement.display();
+
 
 }
 
@@ -241,11 +253,14 @@ function mousePressed() {
 
     // Check if the mouse is inside the "next" text
     if (
-        mouseX > 460 - textWidth('next') / 2 &&
-        mouseX < 460 + textWidth('next') / 2 &&
-        mouseY > 15 &&
-        mouseY < 45
+        mouseX > nextBox.x &&
+        mouseX < nextBox.x + nextBox.w &&
+        mouseY > nextBox.y &&
+        mouseY < nextBox.y + nextBox.h
     ) {
         state = 'secondPart';
     }
+
+    // Check if the clik movement is on Kayle image
+    kayleMovement.checkClick(mouseX, mouseY);
 }
