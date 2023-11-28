@@ -47,17 +47,14 @@ let circle = {
     size: 30, 
 }
 
-let nextBox = {
-    x: 450,
-    y: 100,
-    w: 10,
-    h: 50
-}
+
 
 let charlotte; 
 let kayle;
 
+let charlotteMovement;
 let kayleMovement; 
+
 
 
 // Created a class for my black and white images 
@@ -111,6 +108,7 @@ function setup() {
         bubbles.push(b); 
     }
 
+    charlotteMovement = new CharlotteMovement();
     kayleMovement = new KayleMovement();
 
 }  
@@ -226,8 +224,8 @@ function secondPart() {
 
    image(kayle, width / 2 - 25, height / 2 - 25, 50, 50);
 
-   charlotte.move();
-   charlotte.display();
+   charlotteMovement.move();
+   charlotteMovement.display();
 
    kayleMovement.move();
    kayleMovement.display();
@@ -236,11 +234,9 @@ function secondPart() {
 }
 
 
-
-
-
 function mousePressed() {
-   
+    
+
     let d = dist(mouseX, mouseY, circle.x, circle.y);
     if (d < circle.size) {
         state = 'firstPart'
@@ -250,17 +246,19 @@ function mousePressed() {
         bubbles[i].clicked(mouseX, mouseY);
     }
 
+    //console.log("Mouse X:", mouseX, "Mouse Y:", mouseY);
+    //console.log("Next Box:", nextBox);
 
     // Check if the mouse is inside the "next" text
     if (
-        mouseX > nextBox.x &&
-        mouseX < nextBox.x + nextBox.w &&
-        mouseY > nextBox.y &&
-        mouseY < nextBox.y + nextBox.h
+        mouseX > 430 &&  // Adjusted x-coordinate based on the width of the text
+        mouseX < 490 &&  // Adjusted x-coordinate based on the width of the text
+        mouseY > 15 &&
+        mouseY < 45
     ) {
         state = 'secondPart';
     }
 
-    // Check if the clik movement is on Kayle image
+    // Check if the click movement is on Kayle image
     kayleMovement.checkClick(mouseX, mouseY);
 }

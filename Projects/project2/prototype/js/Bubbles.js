@@ -7,7 +7,7 @@ class Bubbles {
         this.vx = vx;
         this.vy = vy;
         this.maxSpeed = maxSpeed, 
-        //this.speed = this.speed,
+        this.speed = speed,
         this.binary = random(binaries);
     }
 
@@ -33,10 +33,9 @@ class Bubbles {
 
     move() {
        
-       // Constrain the images to stay in the canvas
-        
-        this.y = constrain(this.y, 0, 350);
-       
+
+      // Constrain the images to stay in the canvas
+        this.y = constrain(this.y, 0, height - this.r);
         this.y += this.vy;
         
         

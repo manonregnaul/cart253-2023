@@ -23,4 +23,5 @@ class CharlotteMovement {
     image(charlotte, this.x, this.y, 180, 620);
 }
 
+
 }
