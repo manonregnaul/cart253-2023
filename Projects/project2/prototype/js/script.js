@@ -57,12 +57,14 @@ let kayleMovement;
 
 
 
-// Created a class for my black and white images 
+// Created an array for my black and white images 
 let bubbles = [];
 let binaries = [];
 
 
-
+// Created an array for my Kayle and Charlotte images 
+let charlotteImages = [];
+let kayleImages = [];
 
 function preload() {
 
@@ -220,17 +222,24 @@ function secondPart() {
    text('everything is a question of smile', mouseX, mouseY);
    pop();
 
-   image(charlotte, 330, 40, 180, 620);
-
-   image(kayle, width / 2 - 25, height / 2 - 25, 50, 50);
-
+   
+    // Move and display Charlotte
    charlotteMovement.move();
    charlotteMovement.display();
 
+   // Move and display Kayle
    kayleMovement.move();
    kayleMovement.display();
 
 
+}
+
+function centerAllImages() {
+    for (let i = 0; i < bubbles.length; i++) {
+        bubbles[i].center();
+    }
+    charlotteMovement.center();
+    kayleMovement.center();
 }
 
 

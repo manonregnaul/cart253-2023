@@ -1,27 +1,32 @@
+let imageSpacing = 5;
+
 class CharlotteMovement {
 
   // Created the construstor with initial speed
   constructor() {
-    this.x = 330;
-    this.y = 40;
-    this.vx = 1; 
-    this.vy = 0; 
+    this.x = 400;
+    this.y = 400;
+    this.vx = 1;
+    this.vy = 0;
 }
 
  
   move() {
     this.x += this.vx;
     this.y += this.vy;
-
-
-    if (this.x > width || this.x < 0) {
-      this.vx *= -1; 
+    if (this.x > width + imageSpacing) {
+        this.x = -90;
+        this.y = random(height);
+        charlotteImages.push({ x: this.x, y: this.y });
+    }
   }
-}
+
+
 
   display() {
-    image(charlotte, this.x, this.y, 180, 620);
+     for (let img of charlotteImages) {
+            image(charlotte, img.x, img.y, 180, 620);
+            img.x += 1; 
 }
-
-
+}
 }

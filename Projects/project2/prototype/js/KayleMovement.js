@@ -1,41 +1,29 @@
 class KayleMovement {
 
-  // Acceleration for a natural movement with an initial speed 
   constructor() {
-    this.x = width - 25;
-    this.y = random(height);
-    this.vx = -1;
-    this.vy = 0;
-    this.acceleration = 0.005;
+    this.x = 100;
+    this.y = 100;
+    this.vx = 0;
+    this.vy = 1;
 }
 
-// Constant acceleration to the left 
+ 
   move() {
-    this.vx += this.acceleration;
     this.x += this.vx;
-    if (this.x < 0) {
-        this.x = width;
+    this.y += this.vy;
+    if (this.x > width) {
+        this.x = -90;
         this.y = random(height);
+        kayleImages.push({ x: this.x, y: this.y });
     }
   }
 
+
+
   display() {
-    image(kayle, this.x, this.y, 50, 50);
-  }
-
-
-// Check if we can clik on Kayle image 
-checkClick(mx, my) {
-  let d = dist(mx, my, this.x + 25, this.y + 25);
-  if (d < 25) {
-      centerAllImages();
-  }
+     for (let img of kayleImages) {
+            image(kayle, img.x, img.y, 180, 620);
+            img.x += 1; 
 }
-
-// Make both images at the center of the canvas when cliking on them 
-  center() {
-  this.x = width / 2;
-  this.y = height / 2;
   }
-
 }
