@@ -1,5 +1,5 @@
 
-
+// Class for the first part of my program
 class Bubbles {
 
     constructor(x, y, r, vx, vy, maxSpeed, speed) {
@@ -14,7 +14,7 @@ class Bubbles {
     }
 
    
-    
+    // If we click on 1 image it will change its looks
     clicked(px, py) {
     
         if (
@@ -24,7 +24,7 @@ class Bubbles {
           py < this.y + this.r
         ) {
           this.binary = random(binaries);
-          //this.binary = this.binary
+    
         }
       }
 

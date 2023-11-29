@@ -1,4 +1,4 @@
-
+// Class for the third part  of my program 
 class BouncingBall {
   constructor(x, y, radius, speedX, speedY) {
     this.x = x;
@@ -13,7 +13,7 @@ class BouncingBall {
     this.x += this.speedX;
     this.y += this.speedY;
 
-    // Rebondir sur les bords
+// Boucing movement and constrain to bounce on the edge of th canvas
     if (this.x - this.radius < 0 || this.x + this.radius > width) {
       this.speedX *= -1;
     }
@@ -28,6 +28,7 @@ class BouncingBall {
     ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
   }
 
+  
   clicked(mx, my) {
     let d = dist(mx, my, this.x, this.y);
     if (d < this.radius) {

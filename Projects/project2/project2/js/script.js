@@ -304,7 +304,7 @@ function end() {
     textSize(20);
     noStroke();
     fill(pinkShade.r, pinkShade.g, pinkShade.b);
-    textFont('Nuances');
+    textFont('Tangley Regular');
     textAlign(CENTER, CENTER);
     text('THE END', 250, 250);
     pop();
